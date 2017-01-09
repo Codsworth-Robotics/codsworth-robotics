@@ -2,4 +2,4 @@
 
 Need a robot butler? We've got you covered.
 
-Flying butlers? Gardner bot? Gotcha!
+Flying butlers? Gardener bot? Gotcha!
