@@ -1,0 +1,20 @@
+{
+  "extends": "standard",
+  "plugins": [
+    "react"
+  ],
+  "ecmaFeatures": {
+    "jsx": true
+  },
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "no-extra-semi": [2],
+    "no-multiple-empty-lines": [2, {"max": 2}],
+    "no-return-assign": [0],
+    "no-var": [1],
+    "prefer-const": [1],
+    "semi": [2, "always"]
+  }
+}
