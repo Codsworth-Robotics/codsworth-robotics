@@ -7,9 +7,11 @@
     "jsx": true
   },
   "rules": {
-    "no-multiple-empty-lines": [1, {"max": 2}],
+    "no-multiple-empty-lines": [2, {"max": 2}],
+    "no-var": [1],
     "one-var": [2, "always"],
     "one-var-declaration-per-line": [2, "always"],
+    "prefer-const": [1],
     "semi": [2, "always"]
   }
 }
