@@ -19,6 +19,10 @@ if (!pkg.isProduction && !pkg.isTesting) {
   app.use(require('volleyball'));
 }
 
+// app.get('/pizza', (req, res) => {
+//   res.send('pizza party, dogs!');
+// });
+
 module.exports = app
   // We'll store the whole session in a cookie
   .use(require('cookie-session')({
@@ -39,6 +43,8 @@ module.exports = app
 
   // Serve our api
   .use('/api', require('./api'))
+
+  .use('/', require('./users'))
 
   // Send index.html for anything else.
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')));
