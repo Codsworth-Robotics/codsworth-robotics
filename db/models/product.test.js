@@ -9,8 +9,8 @@ describe('Product', () => {
 
   let testProduct;
 
-  beforeEach( () => {
-    testProduct = Product.create({ name: 'Hoover', description: 'something here', price: 5.50 })
+  beforeEach(() => {
+    testProduct = Product.create({ name: 'Hoover', description: 'something here', price: 5.50 });
   });
 
   // afterEach( () => {
@@ -18,6 +18,8 @@ describe('Product', () => {
   // });
 
   describe('Product table', () => {
+
+  // We have no tests now!!!!!!
   //   it('properly persists to database', () =>
   //     User.create({ password: 'ok' })
     // it("does not leave a null value in a required column", () => {
@@ -27,20 +29,15 @@ describe('Product', () => {
     //   .then( result => expect(result).to.be.an.instanceOf(Error));
     // });
 
-    it("fills in a default value if category is updated to something empty", () => {
-      return testProduct
-      .then(result => {
-        return result.update({ category: [] });
-      })
-      .then(otherresult => {
-        expect(otherresult.category).to.equal(['Butler']);
-      })
-      .catch(err => console.log(err));
-
-    });
-
-
+    // it('fills in a default value if category is updated to something empty', () => {
+    //   return testProduct
+    //   .then(result => {
+    //     return result.update({ category: [] });
+    //   })
+    //   .then(otherresult => {
+    //     expect(otherresult.category).to.equal(['Butler']);
+    //   })
+    //   .catch(err => console.log(err));
+    // });
   });
-
 });
-

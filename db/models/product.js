@@ -1,6 +1,5 @@
 'use strict';
 
-const bcrypt = require('bcrypt');
 const Sequelize = require('sequelize');
 const db = require('APP/db');
 
@@ -37,7 +36,7 @@ const Product = db.define('products', {
     defaultValue: ['http://fillmurray.com/140/200']
   }
 }, {
-  indexes: [{fields: ['name'], unique: true}],
+  indexes: [{fields: ['name'], unique: true}]
 
 });
 
