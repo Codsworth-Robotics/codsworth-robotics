@@ -26,9 +26,14 @@ const Orders = db.define('orders', {
     }
   },
   orderDate: {
-    type: Sequelize.DATE(6),
-    defaultValue: new Date(),
+    type: Sequelize.DATE,
     noUpdate: true
+  }
+}, {
+  hooks: {
+    beforeCreate: function (order) {
+      order.orderDate = Date.now();
+    }
   }
 });
 
