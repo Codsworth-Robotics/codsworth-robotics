@@ -2,6 +2,7 @@
 const debug = require('debug')('sql');
 const chalk = require('chalk');
 const Sequelize = require('sequelize');
+const sequelizeNoUpdateAttributes = require('sequelize-noupdate-attributes');
 const app = require('APP');
 
 const name = (process.env.DATABASE_NAME || app.name) +
@@ -21,6 +22,7 @@ const db = module.exports = new Sequelize(url, {
     timestamps: true        // automatically include timestamp columns
   }
 });
+sequelizeNoUpdateAttributes(db);
 
 // pull in our models
 require('./models');
