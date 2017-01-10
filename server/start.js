@@ -19,10 +19,6 @@ if (!pkg.isProduction && !pkg.isTesting) {
   app.use(require('volleyball'));
 }
 
-// app.get('/pizza', (req, res) => {
-//   res.send('pizza party, dogs!');
-// });
-
 module.exports = app
   // We'll store the whole session in a cookie
   .use(require('cookie-session')({
