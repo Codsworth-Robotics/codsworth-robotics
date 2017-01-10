@@ -1,4 +1,5 @@
 const router = require('express')();
+// const db = require('APP/db');
 
 //
 //  /browse router
@@ -6,7 +7,7 @@ const router = require('express')();
 
 router.get('/', (req, res, next) => {
   // will return top 20 results as json? probably?
-  res.status(115);
+  // res.status(115);
   res.send('browse available bots');
 });
 

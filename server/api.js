@@ -1,12 +1,13 @@
 'use strict';
 
-const db = require('APP/db');
 const api = module.exports = require('express').Router();
 
 api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./auth'))
-  .use('/users', require('./users'));
+  .use('/user', require('./routes/user'))
+  .use('/browse', require('./routes/browse'))
+  .use('/product', require('./routes/product'));
 
 // Send along any errors
 api.use((err, req, res, next) => {

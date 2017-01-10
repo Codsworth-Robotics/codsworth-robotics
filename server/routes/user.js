@@ -1,5 +1,6 @@
 const router = require('express')();
 const Users = require('APP/db/models/user');
+// const db = require('APP/db');
 
 //
 //  /user router
