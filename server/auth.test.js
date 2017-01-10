@@ -13,10 +13,12 @@ describe('/api/auth', () => {
   before('create a user', () =>
     db.didSync
       .then(() =>
-        User.create(
-          {email: alice.username,
-            password: alice.password
-          })
+        User.create({
+          firstName: 'Alice',
+          lastName: 'Wonderland',
+          email: alice.username,
+          password: alice.password
+        })
       )
   );
 
