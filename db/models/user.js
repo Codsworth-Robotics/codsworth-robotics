@@ -5,15 +5,28 @@ const Sequelize = require('sequelize');
 const db = require('APP/db');
 
 const User = db.define('users', {
-  name: Sequelize.STRING,
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   email: {
     type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
     validate: {
       isEmail: true,
       notEmpty: true
     }
   },
-
+  admin: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
   // We support oauth, so users may or may not have passwords.
   password_digest: Sequelize.STRING,
   password: Sequelize.VIRTUAL
@@ -30,6 +43,12 @@ const User = db.define('users', {
           (err, result) =>
             err ? reject(err) : resolve(result))
         );
+    }
+  },
+  getterMethods: {
+    // For product reviews
+    displayName: function () {
+      return `${this.firstName} ${this.lastName[0]}.`;
     }
   }
 });
