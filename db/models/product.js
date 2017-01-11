@@ -30,14 +30,20 @@ const Product = db.define('products', {
     defaultValue: 0,
     allowNull: false
   },
-  rating: Sequelize.DOUBLE,
+  averageRating: {
+    type: Sequelize.DOUBLE,
+    defaultValue: 0
+  },
+  totalRatings: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
   images: {
     type: Sequelize.ARRAY(Sequelize.STRING),
     defaultValue: ['http://fillmurray.com/140/200']
   }
 }, {
   indexes: [{fields: ['name'], unique: true}]
-
 });
 
 
