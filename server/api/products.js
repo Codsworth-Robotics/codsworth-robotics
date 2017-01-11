@@ -18,7 +18,6 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  console.log(req.body);
   Products.create({
     name: req.body.name,
     category: req.body.category,
