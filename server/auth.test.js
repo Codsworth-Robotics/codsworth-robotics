@@ -5,6 +5,8 @@ const User = require('APP/db/models/user');
 const app = require('./start');
 
 const alice = {
+  firstName: 'alice',
+  lastName: 'shoe',
   username: 'alice@secrets.org',
   password: '12345'
 };
