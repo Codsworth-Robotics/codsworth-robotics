@@ -30,6 +30,6 @@ Rating.belongsTo(Product);
 Product.hasMany(Rating);
 
 Review.belongsTo(Rating);
-Rating.HasOne(Review);
+Rating.hasOne(Review);
 
 module.exports = {User, Product, Order};
