@@ -1,16 +1,8 @@
 const router = require('express')();
 const Products = require('APP/db/models/product');
 
-//
-//  /product router
-//
-
 router.get('/', (req, res, next) => {
-  // Products.findAll()
-  // .then(products => {
-  // 	console.log(products);
-  //   res.json(products);
-  // });
+  res.send('products page');
 });
 
 router.get('/:id', (req, res, next) => {

@@ -7,7 +7,7 @@ const app = require('./start');
 const alice = {
   firstName: 'alice',
   lastName: 'shoe',
-  email: 'alice@secrets.org',
+  username: 'alice@secrets.org',
   password: '12345'
 };
 
