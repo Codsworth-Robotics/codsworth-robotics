@@ -16,7 +16,7 @@ const ExampleApp = connect(
   ({ user, children }) =>
     <div>
       <nav>
-        <Signup />
+        {user ? null : <Signup/>}
         {user ? <WhoAmI/> : <Login/>}
       </nav>
       {children}
