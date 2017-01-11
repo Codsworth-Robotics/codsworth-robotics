@@ -5,7 +5,7 @@ const Rating = require('./rating');
 const Product = require('./product');
 const User = require('./user');
 const Review = require('./review');
-const {expect, assert} = require('chai');
+const {assert} = require('chai');
 
 describe('Ratings', () => {
   before('wait for the db', () => db.didSync);
@@ -38,7 +38,7 @@ describe('Ratings', () => {
         createdRating.setUser(createdUser),
         createdRating.setProduct(createdProduct),
         createdRating.setReview(createdReview)
-      ])
+      ]);
     })
     .then(promises => {
       done();
