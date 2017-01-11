@@ -6,7 +6,6 @@ api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./auth'))
   .use('/user', require('./routes/user'))
-  .use('/browse', require('./routes/browse'))
   .use('/product', require('./routes/product'));
 
 // Send along any errors

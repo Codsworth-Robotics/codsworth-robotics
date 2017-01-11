@@ -1,12 +1,16 @@
 const router = require('express')();
-// const db = require('APP/db');
+const Products = require('APP/db/models/product');
 
 //
 //  /product router
 //
 
 router.get('/', (req, res, next) => {
-  res.send('error page?');
+  // Products.findAll()
+  // .then(products => {
+  // 	console.log(products);
+  //   res.json(products);
+  // });
 });
 
 router.get('/:id', (req, res, next) => {
@@ -15,6 +19,14 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   res.send('adding product to db');
+});
+
+router.get('/:category', (req, res, next) => {
+  res.send('browsing by category');
+});
+
+router.get('/:category/:filterText', (req, res, next) => {
+  res.send('filtered search results');
 });
 
 module.exports = router;
