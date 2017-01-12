@@ -13,6 +13,8 @@ import WhoAmI from './components/WhoAmI';
 import Checkout from './components/Checkout';
 import AddProduct from './components/AddProduct';
 import Orders from './components/Orders';
+import ProductDetail from './components/ProductDetail';
+
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -36,6 +38,7 @@ render(
         <Route path="/checkout" component={Checkout} />
         <Route path="/products/add" component={AddProduct} />
         <Route path="/orders" component={Orders} />
+        <Route path="/products/:id" component={ProductDetail} />
       </Route>
     </Router>
   </Provider>,
