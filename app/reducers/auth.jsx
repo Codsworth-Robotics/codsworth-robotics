@@ -13,6 +13,13 @@ export const authenticated = user => ({
   type: AUTHENTICATED, user
 });
 
+export const signup = (firstName, lastName, username, password) =>
+  dispatch =>
+    axios.post('/api/auth/local/signup',
+      {firstName, lastName, username, password})
+      .then(() => dispatch(whoami()))
+      .catch(() => dispatch(whoami()));
+
 export const login = (username, password) =>
   dispatch =>
     axios.post('/api/auth/local/login',
