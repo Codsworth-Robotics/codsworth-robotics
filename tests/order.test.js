@@ -1,8 +1,8 @@
 'use strict';
 
 const db = require('APP/db');
-const Product = require('./product');
-const OrderProduct = require('./orderProduct');
+const Product = require('APP/db/models/product');
+const OrderProduct = require('APP/db/models/orderProduct');
 const Orders = require('APP/db/models/order');
 const {expect} = require('chai');
 

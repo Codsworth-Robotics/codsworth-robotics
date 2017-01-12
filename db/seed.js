@@ -89,11 +89,14 @@ db.didSync
   .then(allReviews => {
     console.log('Success!');
     const arrOfOrderPromises = [];
-    userArr.forEach(user => {
+    userArr.map(user => {
       const userOrder = Math.round(Math.random() * 5);
       for (let i = 0; i < userOrder; i++) {
         arrOfOrderPromises.push(db.model('orders').create({
           shippingAddress: '1234 Fake Lane, Nontown, Earth 12345'
+        })
+        .then(order => {
+          return order.setUser(user);
         })
         .then(order => {
           const addProductToOrderArr = [];
@@ -105,7 +108,7 @@ db.didSync
           console.log(`Added ${numOfProducts} random products to order Number ${order.orderID}`);
           return db.Promise.all(addProductToOrderArr);
         })
-        .then(promises => {
+        .then(order => {
           console.log('Success!');
         }));
       }
