@@ -9,6 +9,7 @@ import Jokes from './components/Jokes';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
 import AddProduct from './components/AddProduct';
+import ProductDetail from './components/ProductDetail';
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -29,6 +30,7 @@ render(
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/products/add" component={AddProduct} />
+        <Route path="/products/:id" component={ProductDetail} />
       </Route>
     </Router>
   </Provider>,

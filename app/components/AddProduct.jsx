@@ -1,9 +1,28 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
-export default class AddProduct extends Component {
+
+
+// const mapStateToProps = {
+//   return {
+//   }
+// }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadProducts (products) {
+      dispatch(loadProducts(products));
+    }
+  };
+}
+
+export default connect (
+  // mapStateToProps,
+  mapDispatchToProps) (class extends Component {
 	//currently persists new product to DB
 	// TODO: redirect to product detail page
+
   addProduct (productName, desc, price, inventory) {
     axios.post('/api/products/', {
       name: productName,
@@ -11,6 +30,7 @@ export default class AddProduct extends Component {
       price: price,
       inventory: inventory
     })
+    .then(resp => resp.config.data)
     .then(resp => console.log('resp: ', resp))
     .catch((err, next) => {
       console.log(err);
@@ -40,5 +60,4 @@ export default class AddProduct extends Component {
       </div>
     );
   }
-}
-
+});
