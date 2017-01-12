@@ -2,6 +2,7 @@
 
 const Sequelize = require('sequelize');
 const db = require('APP/db');
+const OrderProduct = require('./orderProduct');
 
 const Orders = db.define('orders', {
   orderID: {
@@ -33,6 +34,30 @@ const Orders = db.define('orders', {
   hooks: {
     beforeCreate: function (order) {
       order.orderDate = Date.now();
+    }
+  },
+  instanceMethods: {
+    addProductToOrder: function (product) {
+      return OrderProduct.findOne({
+        where: {
+          product_id: product.id,
+          order_orderID: this.orderID
+        }
+      })
+      .then(orderproduct => {
+        return orderproduct ? orderproduct.update({quantity: orderproduct.quantity + 1}) : this.addProduct(product);
+      });
+    },
+    removeProductFromOrder: function (product) {
+      return OrderProduct.findOne({
+        where: {
+          product_id: product.id,
+          order_orderID: this.orderID
+        }
+      })
+      .then(orderproduct => {
+        return orderproduct.quantity === 1 ? this.removeProduct(product) : orderproduct.update({quantity: orderproduct.quantity - 1});
+      });
     }
   }
 });

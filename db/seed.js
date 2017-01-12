@@ -16,7 +16,7 @@ const seedProducts = () => db.Promise.map([
   {name: 'Marvin', description: 'Comes with the all new Genuine People Personalities technology pre-installed!', price: 42.00}
 ], product => db.model('products').create(product));
 
-let userArr;
+let userArr, productArr;
 
 db.didSync
   .then(() => db.sync({force: true}))
@@ -28,14 +28,17 @@ db.didSync
   .then(seedProducts)
   .then(products => {
     console.log(`Seeded ${products.length} products OK`);
+    productArr = products;
     const arrOfRatingPromises = [];
+    let counter = 0;
     products.forEach(product => {
       // runs 5 times, once for each star
       for (let i = 1; i < 6; i++) {
         // Creates up to 5 i star ratings for each product
         let randNum = Math.round(Math.random() * 5);
-        console.log(`Creating ${randNum} guest ratings for ${product.name} with ${i} star`);
+        // console.log(`Creating ${randNum} guest ratings for ${product.name} with ${i} star`);
         for (randNum; randNum > 0; randNum--) {
+          counter++;
           arrOfRatingPromises.push(db.model('ratings').create({
             stars: i
           })
@@ -48,14 +51,18 @@ db.didSync
         }
       }
     });
+    console.log(`Creating ${counter} random guest ratings`);
     return db.Promise.all(arrOfRatingPromises);
   })
   .then(allRatings => {
+    console.log('Success!');
     const arrOfReviewPromises = [];
+    let counter = 0;
     allRatings.forEach(rating => {
       const userReview = Math.round(Math.random() * 4);
       let createdReview;
       if (userReview === 4) {
+        counter++;
         const randUser = Math.floor(Math.random() * userArr.length);
         arrOfReviewPromises.push(db.model('reviews').create({
           title: 'Random Review Name',
@@ -76,7 +83,23 @@ db.didSync
         }));
       }
     });
+    console.log(`Creating ${counter} random user reviews from ratings`);
     return db.Promise.all(arrOfReviewPromises);
+  })
+  .then(allReviews => {
+    console.log('Success!');
+    const arrOfOrderPromises = [];
+    userArr.forEach(user => {
+      const userOrder = Math.round(Math.random() * 5);
+      for (let i = 0; i < userOrder; i++) {
+        arrOfOrderPromises.push(db.model('orders').create({
+          shippingAddress: '1234 Fake Lane, Nontown, Earth 12345'
+        })
+        .then(order => {
+
+        }));
+      }
+    });
   })
   .catch(error => console.error(error))
   .finally(() => db.close());
