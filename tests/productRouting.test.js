@@ -16,5 +16,5 @@ describe('Product routing', () => {
           expect(result).to.be.an('object');
         });
     });
-  });        // This test is B0rked
+  });
 });
