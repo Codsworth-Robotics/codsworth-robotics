@@ -4,7 +4,7 @@ const Products = require('APP/db/models/product');
 router.get('/', (req, res, next) => {
   Products.findAll()
   .then(products => {
-    res.send(products);
+    res.json(products);
   })
   .catch(next);
 });
@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   Products.findById(req.params.id)
   .then(products => {
-    res.send(products);
+    res.json(products);
   })
   .catch(next);
 });

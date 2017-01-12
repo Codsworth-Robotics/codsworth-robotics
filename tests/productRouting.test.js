@@ -9,10 +9,12 @@ describe('Product routing', () => {
   before('wait for the db', () => db.didSync);
 
   describe('Product routing', () => {
-    xit("get '/' returns an object ", () => {
+    it("get '/' returns an object ", () => {
       request(app)
         .get('/api/products')
-        .expect.to.be.an('object');
+        .then(result => {
+          expect(result).to.be.an('object');
+        });
     });
   });        // This test is B0rked
 });
