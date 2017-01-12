@@ -9,6 +9,7 @@ import Jokes from './components/Jokes';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
+import Checkout from './components/Checkout';
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -29,6 +30,7 @@ render(
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
+        <Route path="/checkout" component={Checkout} />
       </Route>
     </Router>
   </Provider>,

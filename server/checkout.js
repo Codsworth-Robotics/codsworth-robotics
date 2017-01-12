@@ -1,12 +1,20 @@
 const router = require('express')();
-// const db = require('APP/db');
+const Order = require('APP/db/models/order');
 
-//
-//  /checkout router
-//
+// router.get('/', (req, res, next) => {
+//   res.json(req.user);
+// });
 
-router.get('/', (req, res, next) => {
-  res.send('checking out!');
+router.post('/', (req, res, next) => {
+  Order.create({
+    shippingAddress: req.body.shippingAddress,
+    totalPrice: req.body.totalPrice,
+    user_id: req.user.id
+  })
+  .then(order => {
+    res.json(order);
+  })
+  .catch(next);
 });
 
 module.exports = router;
