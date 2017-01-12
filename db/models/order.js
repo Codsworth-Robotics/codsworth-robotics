@@ -8,27 +8,32 @@ const Orders = db.define('orders', {
   orderID: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
-    primaryKey: true
+    primaryKey: true,
+    allowNull: false
   },
   shippingAddress: {
     type: Sequelize.STRING,
     validate: {
       notEmpty: true
-    }
+    },
+    allowNull: false
   },
   totalPrice: {
-    type: Sequelize.DECIMAL(10, 2)
+    type: Sequelize.DECIMAL(10, 2),
+    allowNull: false
   },
   status: {
     type: Sequelize.ENUM('processing', 'shipping', 'delivered'),
     defaultValue: 'processing',
     validate: {
       notEmpty: true
-    }
+    },
+    allowNull: false
   },
   orderDate: {
     type: Sequelize.DATE,
-    noUpdate: true
+    noUpdate: true,
+    allowNull: false
   }
 }, {
   hooks: {

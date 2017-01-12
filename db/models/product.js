@@ -22,13 +22,20 @@ const Product = db.define('products', {
     }
   },
   price: {
-    type: Sequelize.DOUBLE,
-    allowNull: false
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false,
+    validate: {
+      min: 0
+    }
   },
   inventory: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 0
+    }
   },
   // this is the total number of each star of ratings [1star, 2stars, 3stars, ...]
   ratingsTotal: {
@@ -40,7 +47,7 @@ const Product = db.define('products', {
     defaultValue: ['http://fillmurray.com/140/200']
   }
 }, {
-  indexes: [{fields: ['name'], unique: true}],
+  indexes: [{fields: ['name'], unique: true}, {fields: ['category'], unique: true}],
   getterMethods: {
     averageRating: function () {
       return this.ratingsTotal.reduce((val, idx) => {
@@ -48,7 +55,7 @@ const Product = db.define('products', {
       }, 0);
     }
   },
-  setterMethods: {
+  instanceMethods: {
     incrementRating: function (num) {
       const oldTotal = this.getDataValue('ratingsTotal');
       oldTotal[num - 1]++;
