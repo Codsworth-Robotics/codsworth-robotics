@@ -1,7 +1,7 @@
 const request = require('supertest-as-promised');
 const {expect} = require('chai');
 
-const app = require('./start');
+const app = require('APP/server/start');
 
 describe('/browse', () => {
   describe('hit home page', () => {

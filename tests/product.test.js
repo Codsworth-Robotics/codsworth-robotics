@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('APP/db');
-const Product = require('./product');
+const Product = require('APP/db/models/product');
 const {expect} = require('chai');
 
 describe('Product', () => {
@@ -20,8 +20,8 @@ describe('Product', () => {
   describe('Product table', () => {
 
   // We have no tests now!!!!!!
-  //   it('properly persists to database', () =>
-  //     User.create({ password: 'ok' })
+    // it('properly persists to database', () =>
+    //   User.create({ password: 'ok' })
     // it("does not leave a null value in a required column", () => {
     //   testProduct.validate()
     //   // return testProduct.then(res => {
