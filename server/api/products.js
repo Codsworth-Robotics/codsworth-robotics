@@ -27,8 +27,10 @@ router.post('/', (req, res, next) => {
   .then(() => {
     res.send('created!');
   });
+  // OB/EPS: missing error handling
 });
 
+// OB/EPS: more standard RESTful URL GET /api/products?category=butler
 router.get('/cat/:category', (req, res, next) => {
   Products.findAll({
     where: {
@@ -41,6 +43,7 @@ router.get('/cat/:category', (req, res, next) => {
   .catch(next);
 });
 
+// OB/EPS: could also incorporate into query string
 router.get('/cat/:category/:filterText', (req, res, next) => {
   res.send('filtered search results');
 });

@@ -13,6 +13,7 @@ describe('Product', () => {
     testProduct = Product.create({ name: 'Hoover', description: 'something here', price: 5.50 });
   });
 
+  // OB/EPS: watch out for undead code, keep it out of master
   // afterEach( () => {
   //   testProduct.destroy();
   // });

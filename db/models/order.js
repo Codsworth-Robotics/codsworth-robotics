@@ -9,17 +9,21 @@ const Orders = db.define('orders', {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true
+    // OB/EPS: allowNull false?
   },
   shippingAddress: {
+    // OB/EPS: allowNull false?
     type: Sequelize.STRING,
     validate: {
       notEmpty: true
     }
   },
   totalPrice: {
+    // OB/EPS: allowNull false?
     type: Sequelize.DECIMAL(10, 2)
   },
   status: {
+    // OB/EPS: allowNull false?
     type: Sequelize.ENUM('processing', 'shipping', 'delivered'),
     defaultValue: 'processing',
     validate: {
@@ -27,6 +31,7 @@ const Orders = db.define('orders', {
     }
   },
   orderDate: {
+    // OB/EPS: allowNull false?
     type: Sequelize.DATE,
     noUpdate: true
   }
