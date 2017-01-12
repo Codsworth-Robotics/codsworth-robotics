@@ -1,7 +1,6 @@
 'use strict';
 const debug = require('debug')('sql');
 const chalk = require('chalk');
-const Promise = require('bluebird');
 const Sequelize = require('sequelize');
 const sequelizeNoUpdateAttributes = require('sequelize-noupdate-attributes');
 const app = require('APP');
