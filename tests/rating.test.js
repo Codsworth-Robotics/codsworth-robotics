@@ -1,10 +1,10 @@
 'use strict';
 
 const db = require('APP/db');
-const Rating = require('./rating');
-const Product = require('./product');
-const User = require('./user');
-const Review = require('./review');
+const Rating = require('APP/db/models/rating');
+const Product = require('APP/db/models/product');
+const User = require('APP/db/models/user');
+const Review = require('APP/db/models/review');
 const {assert} = require('chai');
 
 describe('Ratings', () => {

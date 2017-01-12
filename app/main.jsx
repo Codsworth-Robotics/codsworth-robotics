@@ -10,6 +10,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
 import Checkout from './components/Checkout';
+import AddProduct from './components/AddProduct';
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -31,6 +32,7 @@ render(
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/products/add" component={AddProduct} />
       </Route>
     </Router>
   </Provider>,
