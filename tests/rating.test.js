@@ -11,8 +11,8 @@ describe('Ratings', () => {
   before('wait for the db', () => db.didSync);
 
   let createdRating, createdUser, createdProduct, createdReview;
-  before((done) => {
-    Promise.all([
+  before(() => {
+    return Promise.all([
       User.create({
         firstName: 'John',
         lastName: 'Smith',
@@ -40,9 +40,6 @@ describe('Ratings', () => {
         createdRating.setReview(createdReview)
       ]);
     })
-    .then(promises => {
-      done();
-    });
   });
 
   after(() => {

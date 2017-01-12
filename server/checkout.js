@@ -5,6 +5,7 @@ const router = require('express')();
 //  /checkout router
 //
 
+// OB/EPS: this could be a POST to /api/orders
 router.get('/', (req, res, next) => {
   res.send('checking out!');
 });
