@@ -6,6 +6,7 @@ import {connect, Provider} from 'react-redux';
 
 import store from './store';
 import Jokes from './components/Jokes';
+import Signup from './components/Signup';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
 import AddProduct from './components/AddProduct';
@@ -16,6 +17,7 @@ const ExampleApp = connect(
   ({ user, children }) =>
     <div>
       <nav>
+        {user ? null : <Signup/>}
         {user ? <WhoAmI/> : <Login/>}
       </nav>
       {children}

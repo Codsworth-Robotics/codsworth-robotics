@@ -24,7 +24,7 @@ describe('/api/users', () => {
         .expect(201)
     );
 
-    xit('POST redirects to the user it just made', () =>
+    it('POST redirects to the user it just made', () =>
       request(app)
         .post('/api/users')
         .send({
