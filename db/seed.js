@@ -102,7 +102,11 @@ db.didSync
             const userProduct = Math.floor(Math.random() * 5);
             addProductToOrderArr.push(order.addProductToOrder(productArr[userProduct]));
           }
+          console.log(`Added ${numOfProducts} random products to order Number ${order.orderID}`);
           return db.Promise.all(addProductToOrderArr);
+        })
+        .then(promises => {
+          console.log('Success!');
         }));
       }
     });
