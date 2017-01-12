@@ -2,15 +2,10 @@ const router = require('express')();
 const Products = require('APP/db/models/product');
 
 router.get('/', (req, res, next) => {
-  Products.findAll()
-  .then(products => {
-    res.json(products);
+  Products.findAll({where:
+  { id: req.query.id,
+    category: req.query.category }
   })
-  .catch(next);
-});
-
-router.get('/:id', (req, res, next) => {
-  Products.findById(req.params.id)
   .then(products => {
     res.json(products);
   })
@@ -22,27 +17,15 @@ router.post('/', (req, res, next) => {
     name: req.body.name,
     category: req.body.category,
     description: req.body.description,
-    price: req.body.price
+    price: req.body.price,
+    inventory: req.body.inventory,
+    ratingsTotal: req.body.ratingsTotal,
+    images: req.body.images
   })
   .then(() => {
-    res.send('created!');
-  });
-});
-
-router.get('/cat/:category', (req, res, next) => {
-  Products.findAll({
-    where: {
-      category: req.params.category
-    }
-  })
-  .then(products => {
-    res.send(products);
+    res.sendStatus(201);
   })
   .catch(next);
-});
-
-router.get('/cat/:category/:filterText', (req, res, next) => {
-  res.send('filtered search results');
 });
 
 module.exports = router;
