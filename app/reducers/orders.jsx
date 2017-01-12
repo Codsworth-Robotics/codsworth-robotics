@@ -24,7 +24,7 @@ export const createOrder = (shippingAddress, totalPrice) => ({
 
 export const checkout = (shippingAddress, totalPrice) =>
   dispatch =>
-    axios.post('/api/checkout',
+    axios.post('/api/orders',
       {shippingAddress, totalPrice})
         .then(() => dispatch(createOrder(shippingAddress, totalPrice)));
 
