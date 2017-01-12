@@ -96,10 +96,17 @@ db.didSync
           shippingAddress: '1234 Fake Lane, Nontown, Earth 12345'
         })
         .then(order => {
-
+          const addProductToOrderArr = [];
+          const numOfProducts = Math.floor(Math.random() * 10) + 1;
+          for (let j = 0; j < numOfProducts; j++) {
+            const userProduct = Math.floor(Math.random() * 5);
+            addProductToOrderArr.push(order.addProductToOrder(productArr[userProduct]));
+          }
+          return db.Promise.all(addProductToOrderArr);
         }));
       }
     });
+    return db.Promise.all(arrOfOrderPromises);
   })
   .catch(error => console.error(error))
   .finally(() => db.close());
