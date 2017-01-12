@@ -36,7 +36,6 @@ db.didSync
       for (let i = 1; i < 6; i++) {
         // Creates up to 5 i star ratings for each product
         let randNum = Math.round(Math.random() * 5);
-        // console.log(`Creating ${randNum} guest ratings for ${product.name} with ${i} star`);
         for (randNum; randNum > 0; randNum--) {
           counter++;
           arrOfRatingPromises.push(db.model('ratings').create({
@@ -55,7 +54,6 @@ db.didSync
     return db.Promise.all(arrOfRatingPromises);
   })
   .then(allRatings => {
-    console.log('Success!');
     const arrOfReviewPromises = [];
     let counter = 0;
     allRatings.forEach(rating => {
@@ -87,7 +85,6 @@ db.didSync
     return db.Promise.all(arrOfReviewPromises);
   })
   .then(allReviews => {
-    console.log('Success!');
     const arrOfOrderPromises = [];
     userArr.map(user => {
       const userOrder = Math.round(Math.random() * 5);

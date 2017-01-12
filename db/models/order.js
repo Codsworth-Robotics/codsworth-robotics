@@ -38,7 +38,6 @@ const Orders = db.define('orders', {
   },
   instanceMethods: {
     addProductToOrder: function (product) {
-      console.log(product.id, this.orderID);
       return OrderProduct.findOne({
         where: {
           product_id: product.id,
@@ -46,7 +45,6 @@ const Orders = db.define('orders', {
         }
       })
       .then(orderproduct => {
-        console.log(orderproduct);
         return orderproduct ? orderproduct.update({quantity: orderproduct.quantity + 1}) : this.addProduct(product);
       });
     },
