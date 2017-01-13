@@ -38,7 +38,7 @@ const Orders = db.define('orders', {
   }
 }, {
   hooks: {
-    beforeCreate: function (order) {
+    beforeValidate: function (order) {
       order.orderDate = Date.now();
     }
   },

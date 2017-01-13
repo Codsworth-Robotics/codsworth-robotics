@@ -47,7 +47,7 @@ const Product = db.define('products', {
     defaultValue: ['http://fillmurray.com/140/200']
   }
 }, {
-  indexes: [{fields: ['name'], unique: true}, {fields: ['category'], unique: true}],
+  indexes: [{fields: ['name'], unique: true}, {fields: ['category']}],
   getterMethods: {
     averageRating: function () {
       return this.ratingsTotal.reduce((val, idx) => {

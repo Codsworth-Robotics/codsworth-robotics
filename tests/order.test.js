@@ -14,12 +14,12 @@ describe('Orders', () => {
     currentTime = new Date();
     createdOrder = Orders.build({
       shippingAddress: '123 South Nowhere Blvd, MiddleOf, DW 12345',
-      totalPrice: 123.45
+      totalPrice: 12345
     });
     createdProduct = Product.build({
       name: 'Fake-Bot',
       description: 'This is an illusion, look away before it\'s too late!',
-      price: 123.45
+      price: 12345
     });
   });
 
@@ -51,7 +51,7 @@ describe('Orders', () => {
         expect(error.message).to.contain('noUpdate Violation');
       });
     });
-    it.only('adds a product to the order with the right quantity and then removes quantity.  If the quantity goes to 0, it removes the association', () => {
+    it('adds a product to the order with the right quantity and then removes quantity.  If the quantity goes to 0, it removes the association', () => {
       return createdOrder.save()
       .then(order => {
         return createdProduct.save();
