@@ -2,16 +2,21 @@ const router = require('express')();
 const Products = require('APP/db/models/product');
 
 router.get('/', (req, res, next) => {
-  let queryObj;
-
-  if (req.query.id) queryObj.id = req.query.id;
-  if (req.query.category) queryObj.category = req.query.category;
-
-  Products.findAll({where: queryObj})
-  .then(products => {
-    res.json(products);
-  })
-  .catch(next);
+  if (req.query.id) {
+    Products.findById(req.query.id)
+    .then(product => {
+      res.json(product);
+    })
+    .catch(next);
+  } else {
+    const queryObj = {};
+    if (req.query.category) queryObj.category = req.query.category;
+    Products.findAll({where: queryObj})
+    .then(products => {
+      res.json(products);
+    })
+    .catch(next);
+  }
 });
 
 router.post('/', (req, res, next) => {
