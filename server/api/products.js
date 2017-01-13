@@ -2,10 +2,12 @@ const router = require('express')();
 const Products = require('APP/db/models/product');
 
 router.get('/', (req, res, next) => {
-  Products.findAll({where:
-  { id: req.query.id,
-    category: req.query.category }
-  })
+  let queryObj;
+
+  if (req.query.id) queryObj.id = req.query.id;
+  if (req.query.category) queryObj.category = req.query.category;
+
+  Products.findAll({where: queryObj})
   .then(products => {
     res.json(products);
   })
