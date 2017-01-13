@@ -22,7 +22,7 @@ describe('Ratings', () => {
       Product.create({
         name: 'Codsworth',
         description: 'The robot from Fallout!',
-        price: 1.00
+        price: 100
       }),
       Rating.create({
         stars: 5
