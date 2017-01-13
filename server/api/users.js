@@ -1,7 +1,13 @@
 const router = require('express')();
 const User = require('APP/db/models/user');
+const Order = require('APP/db/models/order');
+const Product = require('APP/db/models/product');
 
 const {mustBeLoggedIn, forbidden} = require('../auth.filters');
+
+// users should be able to only get THEIR orders
+// and not anyone else's
+// do some kind of check if req.user = :id for these routes
 
 router.get('/', forbidden('only admins can list users'), (req, res, next) => {
   User.findAll()
@@ -22,10 +28,27 @@ router.post('/', (req, res, next) => {
   .catch(next);
 });
 
-router.get('/orderHistory', (req, res, next) => {
-  res.send('or-durrs');
+// get all orders for a logged in user, including quantity and subtotal as well as product info
+// req.user
+router.get('/account/orders', mustBeLoggedIn, (req, res, next) => {
+  User.findById(req.user.id)
+  .then(user => {
+    return Order.findAll({
+      where: {
+        user_id: req.user.id
+      },
+      include: [{
+        model: Product
+      }]
+    });
+  })
+  .then(orders => {
+    res.json(orders);
+  })
+  .catch(next);
 });
 
+// get the main user/account management page for a logged in user
 router.get('/:id', mustBeLoggedIn, (req, res, next) => {
   User.findById(req.params.id)
   .then(user => res.json(user))

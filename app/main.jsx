@@ -9,7 +9,9 @@ import Jokes from './components/Jokes';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
+import Checkout from './components/Checkout';
 import AddProduct from './components/AddProduct';
+import Orders from './components/Orders';
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -30,7 +32,9 @@ render(
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
+        <Route path="/checkout" component={Checkout} />
         <Route path="/products/add" component={AddProduct} />
+        <Route path="/orders" component={Orders} />
       </Route>
     </Router>
   </Provider>,
