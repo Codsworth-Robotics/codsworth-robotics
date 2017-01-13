@@ -9,11 +9,11 @@ const seedUsers = () => db.Promise.map([
 ], user => db.model('users').create(user));
 
 const seedProducts = () => db.Promise.map([
-  {name: 'Codsworth', description: 'The robot from Fallout now in your home!', price: 900.25},
-  {name: 'C3PO', description: 'Fluent in over six million forms of communication', price: 17000.00},
-  {name: 'Dot Matrix', description: 'Perfect for the runaway rebellious princess in your life!', price: 123.45},
-  {name: 'Bending Unit 22', description: 'Runs on alcohol and the wallets of passerbys.', price: 3000.00},
-  {name: 'Marvin', description: 'Comes with the all new Genuine People Personalities technology pre-installed!', price: 42.00}
+  {name: 'Codsworth', description: 'The robot from Fallout now in your home!', price: 90025},
+  {name: 'C3PO', description: 'Fluent in over six million forms of communication', price: 1700000},
+  {name: 'Dot Matrix', description: 'Perfect for the runaway rebellious princess in your life!', price: 12345},
+  {name: 'Bending Unit 22', description: 'Runs on alcohol and the wallets of passerbys.', price: 300000},
+  {name: 'Marvin', description: 'Comes with the all new Genuine People Personalities technology pre-installed!', price: 4200}
 ], product => db.model('products').create(product));
 
 let userArr, productArr;
