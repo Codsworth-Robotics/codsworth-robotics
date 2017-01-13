@@ -19,7 +19,8 @@ const Orders = db.define('orders', {
     allowNull: false
   },
   totalPrice: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
     allowNull: false
   },
   status: {
