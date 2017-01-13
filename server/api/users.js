@@ -1,7 +1,7 @@
 const router = require('express')();
 const User = require('APP/db/models/user');
 const Order = require('APP/db/models/order');
-const Product = require('APP/db/models/Product');
+const Product = require('APP/db/models/product');
 
 const {mustBeLoggedIn, forbidden} = require('../auth.filters');
 
