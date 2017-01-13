@@ -1,24 +1,25 @@
 const router = require('express')();
 const Products = require('APP/db/models/product');
 
+// find 'all' or search by category
 router.get('/', (req, res, next) => {
-  if (req.query.id) {
-    Products.findById(req.query.id)
-    .then(product => {
-      res.json(product);
-    })
-    .catch(next);
-  } else {
-    const queryObj = {};
-    if (req.query.category) queryObj.category = req.query.category;
-    Products.findAll({where: queryObj})
-    .then(products => {
-      res.json(products);
-    })
-    .catch(next);
-  }
+  Products.findAll({where: req.query})
+  .then(products => {
+    res.json(products);
+  })
+  .catch(next);
 });
 
+// find by id
+router.get('/:id', (req, res, next) => {
+  Products.findById(req.params.id)
+  .then(product => {
+    res.json(product);
+  })
+  .catch(next);
+});
+
+// add product to database
 router.post('/', (req, res, next) => {
   Products.create({
     name: req.body.name,
