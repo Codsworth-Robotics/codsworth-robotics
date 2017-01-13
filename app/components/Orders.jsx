@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 
 export class Orders extends Component {
+  componentDidMount () {
+    this.props.getOrderHistory();
+  }
   render () {
-    console.log(this.props);
     return (
       <div>
         <h1>Your Order History</h1>
         <p>Click on any order for details.</p>
-        <button onClick={() => this.props.getOrderHistory(this.props.user.id)}>Get Order History</button>
         {this.props.orderHistory && this.props.orderHistory.map(order => (
           <div key={order.orderID}>
             <h2>Order ID: {order.orderID}</h2>
@@ -35,28 +36,16 @@ import {getOrderHistory} from 'APP/app/reducers/orders';
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
-  user: state.auth,
   orderHistory: state.orders.orderHistory
 });
 
 const mapDispatchToProps = dispatch => ({
-  getOrderHistory (userId) {
-    dispatch(getOrderHistory(userId));
+  getOrderHistory () {
+    dispatch(getOrderHistory());
   }
 });
 
 export default connect(
-  // ({ auth, orders }) => ({ user: auth, orderHistory: orders }),
-  // {getOrderHistory}
   mapStateToProps,
   mapDispatchToProps
-)(Orders
-  // class IntermediateOrdersContainer extends Component {
-  //   componentDidMount () {
-  //     this.props.user ? this.props.getOrderHistory(this.props.user.id) : null;
-  //   }
-  //   render () {
-  //     return <Orders {...this.props} />;
-  //   }
-  // }
-);
+)(Orders);

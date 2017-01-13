@@ -29,12 +29,13 @@ router.post('/', (req, res, next) => {
 });
 
 // get all orders for a logged in user, including quantity and subtotal as well as product info
-router.get('/:id/orders', mustBeLoggedIn, (req, res, next) => {
-  User.findById(req.params.id)
+// req.user
+router.get('/account/orders', mustBeLoggedIn, (req, res, next) => {
+  User.findById(req.user.id)
   .then(user => {
     return Order.findAll({
       where: {
-        user_id: user.id
+        user_id: req.user.id
       },
       include: [{
         model: Product

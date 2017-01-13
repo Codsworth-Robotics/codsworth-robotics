@@ -42,9 +42,9 @@ export const checkout = (shippingAddress, totalPrice) =>
       {shippingAddress, totalPrice})
         .then(() => dispatch(createOrder(shippingAddress, totalPrice)));
 
-export const getOrderHistory = userId =>
+export const getOrderHistory = () =>
   dispatch =>
-    axios.get(`/api/users/${userId}/orders`)
+    axios.get(`/api/users/account/orders`)
       .then(orders => dispatch(viewOrders(orders.data)));
 
 export default reducer;
