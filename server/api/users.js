@@ -1,6 +1,7 @@
 const router = require('express')();
 const User = require('APP/db/models/user');
 const Order = require('APP/db/models/order');
+const Product = require('APP/db/models/Product');
 
 const {mustBeLoggedIn, forbidden} = require('../auth.filters');
 
@@ -27,14 +28,17 @@ router.post('/', (req, res, next) => {
   .catch(next);
 });
 
-// get all orders for a logged in user
+// get all orders for a logged in user, including quantity and subtotal as well as product info
 router.get('/:id/orders', mustBeLoggedIn, (req, res, next) => {
   User.findById(req.params.id)
   .then(user => {
     return Order.findAll({
       where: {
         user_id: user.id
-      }
+      },
+      include: [{
+        model: Product
+      }]
     });
   })
   .then(orders => {
