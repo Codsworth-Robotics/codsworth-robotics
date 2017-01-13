@@ -6,6 +6,7 @@ const passport = require('passport');
 const User = require('APP/db/models/user');
 const OAuth = require('APP/db/models/oauth');
 const auth = require('express').Router();
+const _ = require('lodash');
 
 
 /*************************
@@ -119,7 +120,9 @@ passport.use(new (require('passport-local').Strategy)(
   }
 ));
 
-auth.get('/whoami', (req, res) => res.send(req.user));
+auth.get('/whoami', (req, res) => {
+  res.send(_.pick(req.user, ['firstName', 'lastName', 'email', 'id', 'displayName']));
+});
 
 auth.post('/local/signup', (req, res, next) => {
   User.create({
