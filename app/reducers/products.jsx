@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const initState = {
-  products: [{name: 'test object'}],
-  selectedProduct: {}
+  products: []
 };
 
 /* ----------------- REDUCER -------------------- */
@@ -16,9 +15,6 @@ const reducer = (state = initState, action) => {
       newState.products = action.products;
       break;
 
-    case SELECT_PRODUCT:
-      newState.products.selectedProduct = action.product;
-      break;
   }
   return newState;
 };
@@ -29,16 +25,11 @@ export default reducer;
 /* ------------- ACTION TYPES ------------------- */
 
 const LOAD_ITEMS = 'LOAD_ITEMS';
-const SELECT_PRODUCT = 'SELECT_PRODUCT';
 
 /* ------------- ACTION CREATORS ---------------- */
 
 export const getProducts = (products) => {
   return { type: LOAD_ITEMS, products: products };
-};
-
-export const selectProduct = (product) => {
-  return { type: SELECT_PRODUCT, product: product };
 };
 
 export const loadProducts = () => {
