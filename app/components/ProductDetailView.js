@@ -2,9 +2,13 @@ import React from 'react';
 
 export const ProductDetailView = (props) => {
   return (
-    <div>
+    <div className="container">
+      <img src={props.product.images} />
       <h5>{props.product.name}</h5>
-      <img src="http://fillmurray.com/200/300" />
+      <p>{props.product.category}</p>
+      <p>{props.product.description}</p>
+      <p>{props.product.price}</p>
+      <p>{props.product.category}</p>
     </div>
   );
 };

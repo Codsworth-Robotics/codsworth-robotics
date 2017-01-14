@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import axios from 'axios';
 
@@ -24,8 +25,7 @@ export class ProductDetail extends Component {
   render () {
     return (
       <div>
-        <h4>Product detail</h4>
-        <p>{this.state.product.name}</p>
+        <Link to="/">Back to products</Link>
         <ProductDetailView product={this.state.product}/>
       </div>
     );

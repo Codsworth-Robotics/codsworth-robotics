@@ -16,18 +16,18 @@ export class BrowseProducts extends Component {
         {
           this.props.products && this.props.products.map(product => {
             return (
-              <Link to={`/products/${product.id}`}>
-                <div key={product.name}>
+              <div key={product.name} className="panel col-xs-4">
+                <Link to={`/products/${product.id}`}>
                   <img src="http://thecatapi.com/api/images/get?format=src&type=gif"
                     style={{width: '128px', height: '128px'}}/>
                   <p>{product.name}</p>
                   <p>{product.category}</p>
                   <p>{product.description}</p>
                   <p>{product.price}</p>
-                  <button>Add to Cart</button>
-                </div>
-                <hr />
-              </Link>
+                </Link>
+                <button>Add to Cart</button>
+              </div>
+
             );
           })
         }
