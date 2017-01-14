@@ -15,6 +15,8 @@
     "no-return-assign": [0],
     "no-var": [1],
     "prefer-const": [1],
-    "semi": [2, "always"]
+    "semi": [2, "always"],
+    "react/jsx-uses-react": [2],
+    "react/jsx-uses-vars": [2]
   }
 }
