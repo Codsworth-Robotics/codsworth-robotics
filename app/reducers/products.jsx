@@ -8,7 +8,6 @@ const initState = {
 /* ----------------- REDUCER -------------------- */
 
 const reducer = (state = initState, action) => {
-  console.log('reducer sees', action, action.type);
   const newState = Object.assign({}, state);
 
   switch (action.type) {
@@ -21,7 +20,6 @@ const reducer = (state = initState, action) => {
       newState.products.selectedProduct = action.product;
       break;
   }
-  console.log('newState = ', newState);
   return newState;
 };
 
@@ -44,7 +42,6 @@ export const selectProduct = (product) => {
 };
 
 export const loadProducts = () => {
-  console.log('in load products');
   return dispatch =>
     axios.get('/api/products')
     .then(products => {

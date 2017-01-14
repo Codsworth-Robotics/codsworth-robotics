@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 
+import {loadProducts} from 'APP/app/reducers/products';
+import {connect} from 'react-redux';
+
 export class BrowseProducts extends Component {
   componentDidMount () {
     this.props.loadProducts();
@@ -9,7 +12,7 @@ export class BrowseProducts extends Component {
       <div>
         <h3>BrowseProducts</h3>
         {
-          this.props.products.map(product => {
+          this.props.products && this.props.products.map(product => {
             return (
               <div key={product.name}>
                 <p>{product.name}</p>
@@ -21,9 +24,6 @@ export class BrowseProducts extends Component {
     );
   }
 }
-
-import {loadProducts} from 'APP/app/reducers/products';
-import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
   products: state.products.products
