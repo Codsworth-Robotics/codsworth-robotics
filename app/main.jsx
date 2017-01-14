@@ -5,6 +5,7 @@ import {render} from 'react-dom';
 import {connect, Provider} from 'react-redux';
 
 import store from './store';
+import App from './containers/App';
 import Jokes from './components/Jokes';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -29,7 +30,7 @@ const ExampleApp = connect(
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
+      <Route path="/" component={App}>
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/checkout" component={Checkout} />
@@ -38,5 +39,5 @@ render(
       </Route>
     </Router>
   </Provider>,
-  document.getElementById('main')
+  document.getElementById('page-content')
 );
