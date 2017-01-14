@@ -14,6 +14,7 @@ import Checkout from './components/Checkout';
 import AddProduct from './components/AddProduct';
 import Orders from './components/Orders';
 import ProductDetail from './components/ProductDetail';
+import BrowseProducts from './components/BrowseProducts';
 
 
 const ExampleApp = connect(
@@ -38,6 +39,7 @@ render(
         <Route path="/checkout" component={Checkout} />
         <Route path="/products/add" component={AddProduct} />
         <Route path="/orders" component={Orders} />
+        <Route path="/products/browse" component={BrowseProducts} />
         <Route path="/products/:id" component={ProductDetail} />
       </Route>
     </Router>

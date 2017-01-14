@@ -3,6 +3,7 @@ const Products = require('APP/db/models/product');
 
 // find 'all' or search by category
 router.get('/', (req, res, next) => {
+
   Products.findAll({where: req.query})
   .then(products => {
     res.json(products);

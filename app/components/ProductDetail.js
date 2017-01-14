@@ -1,20 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// export const connect(mapStateToProps, mapDispatchToProps)();
-
-// export const mapStateToProps = (state, ownProps) => {
-//   return {
-//     name: state.products[0].name
-//   };
-// };
 
 export const ProductDetail = (props) => (
   <div>
     <h4>Product detail</h4>
+    <p>{props.selectedProduct.name}</p>
   </div>
 );
 
-export default connect(
-  (state => ({}))
-  (ProductDetail)
+export default connect(mapStateToProps)(ProductDetail);
+
+const mapStateToProps = state => ({
+  selectedProduct: state.products.selectedProduct
+});
