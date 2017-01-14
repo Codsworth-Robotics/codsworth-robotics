@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 export const ProductDetail = (props) => (
   <div>
     <h4>Product detail</h4>
-    <p>{props.selectedProduct.name}</p>
+    <p>{props.name}</p>
   </div>
 );
 

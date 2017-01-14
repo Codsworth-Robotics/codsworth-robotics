@@ -33,13 +33,13 @@ const ExampleApp = connect(
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <IndexRedirect to="/jokes" />
+      <Route path="/" component={ExampleApp}>
+        <IndexRedirect to="/products" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/products/add" component={AddProduct} />
         <Route path="/orders" component={Orders} />
-        <Route path="/products/browse" component={BrowseProducts} />
+        <Route path="/products" component={BrowseProducts} />
         <Route path="/products/:id" component={ProductDetail} />
       </Route>
     </Router>

@@ -49,4 +49,3 @@ export const loadProducts = () => {
     })
     .catch(err => console.error(err));
 };
-
