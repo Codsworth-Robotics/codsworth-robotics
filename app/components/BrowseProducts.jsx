@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 
-import {loadProducts} from 'APP/app/reducers/products';
-import {selectProduct} from 'APP/app/reducers/products';
-import {connect} from 'react-redux';
+import {loadProducts, selectProduct} from 'APP/app/reducers/products';
 
+import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
 export class BrowseProducts extends Component {
@@ -17,9 +16,18 @@ export class BrowseProducts extends Component {
         {
           this.props.products && this.props.products.map(product => {
             return (
-              <div key={product.name}>
-                <p><Link to={`/products/${product.id}`}>{product.name}</Link></p>
-              </div>
+              <Link to={`/products/${product.id}`}>
+                <div key={product.name}>
+                  <img src="http://thecatapi.com/api/images/get?format=src&type=gif"
+                    style={{width: '128px', height: '128px'}}/>
+                  <p>{product.name}</p>
+                  <p>{product.category}</p>
+                  <p>{product.description}</p>
+                  <p>{product.price}</p>
+                  <button>Add to Cart</button>
+                </div>
+                <hr />
+              </Link>
             );
           })
         }

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import axios from 'axios';
 
+import {ProductDetailView} from './ProductDetailView';
+
 export class ProductDetail extends Component {
 
   constructor () {
@@ -16,7 +18,7 @@ export class ProductDetail extends Component {
     axios.get(`/api/products/${this.props.params.id}`)
     .then(res => {
       this.setState({product: res.data});
-    });
+    });   // will be adding request for reviews/ratings/etc
   }
 
   render () {
@@ -24,6 +26,7 @@ export class ProductDetail extends Component {
       <div>
         <h4>Product detail</h4>
         <p>{this.state.product.name}</p>
+        <ProductDetailView product={this.state.product}/>
       </div>
     );
   }
