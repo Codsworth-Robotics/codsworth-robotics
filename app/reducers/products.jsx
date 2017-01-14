@@ -9,6 +9,7 @@ const initState = {
 const reducer = (state = initState, action) => {
   const newState = Object.assign({}, state);
 
+
   switch (action.type) {
 
     case LOAD_ITEMS:
@@ -16,6 +17,7 @@ const reducer = (state = initState, action) => {
       break;
 
   }
+
   return newState;
 };
 

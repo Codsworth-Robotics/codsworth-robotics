@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+
 import {loadProducts} from 'APP/app/reducers/products';
 import {connect} from 'react-redux';
 
@@ -31,6 +32,7 @@ export class AddProduct extends Component {
             evt.target.description.value,
             evt.target.price.value,
             evt.target.inventory.value,
+
           );
         } }>
           Product name: <input name="name" /><br />
@@ -43,6 +45,7 @@ export class AddProduct extends Component {
       </div>
     );
   }
+
 }
 
 const mapStateToProps = state => ({
@@ -55,3 +58,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
+

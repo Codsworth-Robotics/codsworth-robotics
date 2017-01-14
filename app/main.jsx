@@ -16,7 +16,6 @@ import Orders from './components/Orders';
 import ProductDetail from './components/ProductDetail';
 import BrowseProducts from './components/BrowseProducts';
 
-
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 )(
