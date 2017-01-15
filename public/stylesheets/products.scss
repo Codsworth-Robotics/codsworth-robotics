@@ -5,12 +5,14 @@
 
 .product-card {
   border: 2px solid #595959;
+  border-color: white;
   border-radius: 10px;
   box-shadow: 3px 3px 3px grey; 
   background-color: #ffffff;
   clear: all;
-  height: 350px;
   margin: 5px;
   padding-top: 15px;
+  box-sizing: border-box;
+
 }
 

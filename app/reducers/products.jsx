@@ -33,6 +33,7 @@ export const setSelectedProduct = (product) => {
   return { type: SELECT_PRODUCT, product: product };
 };
 
+// request all products
 export const loadProducts = () => {
   return dispatch =>
     axios.get('/api/products')
@@ -44,6 +45,8 @@ export const loadProducts = () => {
     .catch(err => console.error(err));
 };
 
+// still performing an axios request here because I couldn't
+// figure out how to get to the application state from down here
 export const setSelectedProductId = (currentProductId) => {
   return dispatch =>
     axios.get(`/api/products/${currentProductId}`)
