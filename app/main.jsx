@@ -15,23 +15,6 @@ import BrowseProducts from './components/BrowseProducts';
 
 import {loadProducts, setSelectedProduct} from './reducers/products';
 
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? null : <Signup/>}
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-);
-
-const onBrowse = function () {
-  store.dispatch(loadProducts());
-};
-
 // (state.products.length == 0) when a user visits a product
 //   detail page through a bookmark or direct url
 //   in this case, loadProducts(id) will set the selected product
