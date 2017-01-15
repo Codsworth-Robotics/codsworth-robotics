@@ -21,15 +21,7 @@ router.get('/:id', (req, res, next) => {
 
 // add product to database
 router.post('/', (req, res, next) => {
-  Products.create({
-    name: req.body.name,
-    category: req.body.category,
-    description: req.body.description,
-    price: req.body.price,
-    inventory: req.body.inventory,
-    ratingsTotal: req.body.ratingsTotal,
-    images: req.body.images
-  })
+  Products.create(req.body)
   .then(() => {
     res.sendStatus(201);
   })
