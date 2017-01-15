@@ -14,7 +14,7 @@ export default function (props) {
           <div className="item active">
             <img src="images/boxie-slider-headphones.jpg" alt="demo_slide_2" />
             <div className="jumbotron carousel-caption">
-              <h1>Boxie!</h1>
+              <h1><i className="fa fa-cube"></i> Boxie!</h1>
               <p>A Responsive LemonStand Theme.</p>
               <p><a href="#" className="btn btn-primary btn-lg" role="button">Learn More &raquo;</a></p>
             </div>

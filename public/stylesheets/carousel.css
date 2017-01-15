@@ -13,12 +13,32 @@
   #home-banner .carousel-inner > .item .jumbotron {
     position: absolute; } }
 
+#home-banner .carousel-inner > .item .jumbotron p {
+  text-shadow: none; }
+
+#home-banner .carousel-inner > .item .jumbotron.left {
+  text-align: left; }
+
 @media (min-width: 992px) {
   #home-banner .carousel-caption {
     left: 120px;
     right: 120px;
     padding-left: 0;
     padding-right: 0; } }
+
+#home-banner .carousel-control {
+  background: none;
+  width: 60px; }
+
+#home-banner .carousel-control .fa {
+  font-size: 200%;
+  position: absolute;
+  top: 50%;
+  text-shadow: none;
+  color: #000; }
+
+#home-banner .carousel-control .fa-angle-left {
+  left: 10px; }
 
 .container .jumbotron {
   border-radius: 0;
@@ -34,3 +54,18 @@
 ul, ol {
   margin-top: 0;
   margin-bottom: 10px; }
+
+.btn-primary {
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: #0c4d6c;
+  border-color: #093d55; }
+
+.btn {
+  border-radius: 0; }
+
+.carousel-indicators li {
+  border: 1px solid #ddd; }
+
+.carousel-indicators .active {
+  background-color: #999; }

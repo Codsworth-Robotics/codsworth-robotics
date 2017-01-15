@@ -19,6 +19,11 @@ import {loadProducts, setSelectedProduct} from './reducers/products';
 //   detail page through a bookmark or direct url
 //   in this case, loadProducts(id) will set the selected product
 //   after first loading all products
+
+const onBrowse = function () {
+  store.dispatch(loadProducts());
+};
+
 const setProduct = function (nextRouterState) {
   if (store.getState().products.length === 0) {
     store.dispatch(loadProducts(+nextRouterState.params.id));

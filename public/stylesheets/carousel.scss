@@ -10,6 +10,12 @@
     @media (min-width: 768px){
       position: absolute;
     }
+    p {
+      text-shadow: none;
+    }
+  }
+  .carousel-inner > .item .jumbotron.left {
+    text-align: left;
   }
   .carousel-caption {
     @media (min-width: 992px){
@@ -17,6 +23,20 @@
       right: 120px;
       padding-left: 0;
       padding-right: 0;
+    }
+  }
+  .carousel-control {
+    background: none;
+    width: 60px;
+    .fa {
+      font-size: 200%;
+      position: absolute;
+      top: 50%;
+      text-shadow: none;
+      color: #000;
+    }
+    .fa-angle-left {
+      left: 10px;
     }
   }
 }
@@ -39,4 +59,24 @@
 ul, ol {
   margin-top: 0;
   margin-bottom: 10px;
+}
+
+.btn-primary {
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: #0c4d6c;
+  border-color: #093d55;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.carousel-indicators {
+  li {
+    border: 1px solid #ddd;
+  }
+  .active {
+    background-color: #999;
+  }
 }
