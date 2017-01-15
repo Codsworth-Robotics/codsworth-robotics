@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 export class ProductDetail extends Component {
   render () {
@@ -15,3 +16,17 @@ export class ProductDetail extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    selectedProduct: state.selectedProduct
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductDetail);

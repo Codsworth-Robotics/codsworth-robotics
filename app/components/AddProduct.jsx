@@ -31,8 +31,7 @@ export class AddProduct extends Component {
             evt.target.category.value,
             evt.target.description.value,
             evt.target.price.value,
-            evt.target.inventory.value,
-
+            evt.target.inventory.value
           );
         } }>
           Product name: <input name="name" /><br />
