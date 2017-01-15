@@ -41,8 +41,8 @@ export default function (props) {
             <button type="submit" className="btn btn-default">Submit</button>
           </form>
           <ul className="nav navbar-nav navbar-right">
-            { /* Login and Logout are here temporarily, they will be moved to the Account dropdown menu eventually */}
-            <li className="nav-user">{props.user ? null : <Signup/>}{props.user ? <WhoAmI/> : <Login/>}</li>
+            { /* Login and Logout are here temporarily, they will be moved to the Account dropdown menu eventually */ }
+            <li className="nav-user">{props.user ? null : <Signup/>}{props.user === null || Object.keys(props.user).length === 0 ? <Login/> : <WhoAmI/>}</li>
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span className="caret"></span></a>
               <ul className="dropdown-menu">
@@ -58,7 +58,3 @@ export default function (props) {
     </nav>
   );
 }
-// <div className="col-xs-8">Test</div>
-//         <div className="col-xs-4">Test</div>
-//         {props.user ? null : <Signup/>}
-//         {props.user ? <WhoAmI/> : <Login/>}
