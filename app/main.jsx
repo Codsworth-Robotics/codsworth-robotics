@@ -2,14 +2,11 @@
 import React from 'react';
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import {render} from 'react-dom';
-import {connect, Provider} from 'react-redux';
+import {Provider} from 'react-redux';
 
 import store from './store';
 import App from './containers/App';
 import Jokes from './components/Jokes';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import WhoAmI from './components/WhoAmI';
 import Checkout from './components/Checkout';
 import Orders from './components/Orders';
 import ProductDetail from './components/ProductDetail';
