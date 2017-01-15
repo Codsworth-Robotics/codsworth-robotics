@@ -11,12 +11,11 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
 import Checkout from './components/Checkout';
-import AddProduct from './components/AddProduct';
 import Orders from './components/Orders';
 import ProductDetail from './components/ProductDetail';
 import BrowseProducts from './components/BrowseProducts';
 
-import {loadProducts, setSelectedProductId} from './reducers/products';
+import {loadProducts, getAndSetById} from './reducers/products';
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -32,12 +31,11 @@ const ExampleApp = connect(
 );
 
 const onBrowse = function () {
-  const thunk = loadProducts();
-  store.dispatch(thunk);
+  store.dispatch(loadProducts());
 };
 
 const setProduct = function (nextRouterState) {
-  store.dispatch(setSelectedProductId(nextRouterState.params.id));
+  store.dispatch(getAndSetById(nextRouterState.params.id));
 };
 
 render(
@@ -47,7 +45,6 @@ render(
         <IndexRedirect to="/products" />
         <Route path="/jokes" component={Jokes} />
         <Route path="/checkout" component={Checkout} />
-        <Route path="/products/add" component={AddProduct} />
         <Route path="/orders" component={Orders} />
         <Route path="/products" component={BrowseProducts} onEnter={onBrowse} />
         <Route path="/products/:id" component={ProductDetail} onEnter={setProduct} />

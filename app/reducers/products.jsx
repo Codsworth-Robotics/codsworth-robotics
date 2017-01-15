@@ -39,21 +39,19 @@ export const loadProducts = () => {
     axios.get('/api/products')
     .then(res => res.data)
     .then(products => {
-      const action = getProducts(products);
-      dispatch(action);
+      dispatch(getProducts(products));
     })
     .catch(err => console.error(err));
 };
 
-// still performing an axios request here because I couldn't
-// figure out how to get to the application state from down here
-export const setSelectedProductId = (currentProductId) => {
+// using an axios request here, needed for when a user
+// goes directly to /products/:id
+export const getAndSetById = (currentProductId) => {
   return dispatch =>
     axios.get(`/api/products/${currentProductId}`)
     .then(res => res.data)
     .then(product => {
-      const action = setSelectedProduct(product);
-      dispatch(action);
+      dispatch(setSelectedProduct(product));
     })
     .catch(err => console.error(err));
 };
