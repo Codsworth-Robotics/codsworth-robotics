@@ -30,8 +30,8 @@ export class BrowseProducts extends Component {
                 <p>{ this.priceString(product.price) }</p>
                 {
                   (product.inventory > 0)
-                  ? <button>Add to Cart</button>
-                  : <button disabled="true">Out of Stock</button>
+                  ? <button className="btn">Add to Cart</button>
+                  : <button className="btn" gitdisabled="true">Out of Stock</button>
                 }
               </div>
             );
