@@ -6,7 +6,7 @@ export default function (props) {
   return (
     <div id="main" className="container">
       <NavbarContainer />
-      <div className="col-xs-10">
+      <div className="col-xs-12">
         {
           props.children && React.cloneElement(props.children, props)
         }

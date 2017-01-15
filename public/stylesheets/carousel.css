@@ -1,0 +1,36 @@
+#home-banner {
+  color: #222222;
+  background: #DDE1E6; }
+
+#home-banner .carousel-inner > .item .jumbotron {
+  position: static;
+  border: none;
+  color: #555555;
+  background: none;
+  padding-bottom: 30px; }
+
+@media (min-width: 768px) {
+  #home-banner .carousel-inner > .item .jumbotron {
+    position: absolute; } }
+
+@media (min-width: 992px) {
+  #home-banner .carousel-caption {
+    left: 120px;
+    right: 120px;
+    padding-left: 0;
+    padding-right: 0; } }
+
+.container .jumbotron {
+  border-radius: 0;
+  text-align: right;
+  margin-bottom: 0; }
+
+.container .jumbotron h1 {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.6); }
+
+.carousel {
+  position: relative; }
+
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 10px; }

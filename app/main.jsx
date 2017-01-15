@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 
 import store from './store';
 import App from './containers/App';
-import Jokes from './components/Jokes';
+import Home from './components/Home';
 import Checkout from './components/Checkout';
 import AddProduct from './components/AddProduct';
 import Orders from './components/Orders';
@@ -15,8 +15,8 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={Jokes} />
+        <IndexRedirect to="/home" />
+        <Route path="/home" component={Home} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/products/add" component={AddProduct} />
         <Route path="/orders" component={Orders} />
