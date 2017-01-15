@@ -1,5 +1,14 @@
 body {
-  background: #ffffff; }
+  background: #DDE1E6; }
 
 .align-right {
   text-align: right; }
+
+.dropdown-menu > li > b {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+  font-size: 16px; }
