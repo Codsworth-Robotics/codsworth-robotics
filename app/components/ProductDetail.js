@@ -9,7 +9,7 @@ export const ProductDetail = (props) => (
   <div className="container">
     <Link to='/products'>Back To Products</Link>
     <h4>{props.selectedProduct.name}</h4>
-
+    <em>Pictures to be added soon</em>
     <p>{props.selectedProduct.category}</p>
     <p>{props.selectedProduct.description}</p>
     <p>${priceString(props.selectedProduct.price)}</p>
@@ -27,10 +27,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(ProductDetail);

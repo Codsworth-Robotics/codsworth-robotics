@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {loadProducts} from 'APP/app/reducers/products';
 import {Link} from 'react-router';
 
-import {priceString} from 'APP/app/utils.js';
+
+import { priceString } from 'APP/app/utils.js';
 
 export const BrowseProducts = (props) => (
   // currently displaying a 'cards' style product browser
@@ -39,15 +39,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onLoadProducts: function () {
-      dispatch(loadProducts());
-    }
-  };
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(BrowseProducts);

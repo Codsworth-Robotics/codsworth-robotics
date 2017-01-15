@@ -34,25 +34,20 @@ export const setSelectedProduct = (product) => {
 };
 
 // request all products
-export const loadProducts = () => {
+// if id is provided, the 'selectedProduct' will also be set
+export const loadProducts = (id = null) => {
   return dispatch =>
     axios.get('/api/products')
     .then(res => res.data)
     .then(products => {
       dispatch(getProducts(products));
+      if (id != null) {
+        dispatch(setSelectedProduct(
+          products.find(product => {
+            return (product.id === (+id));
+          })
+        ));
+      }
     })
     .catch(err => console.error(err));
 };
-
-// using an axios request here, needed for when a user
-// goes directly to /products/:id
-export const getAndSetById = (currentProductId) => {
-  return dispatch =>
-    axios.get(`/api/products/${currentProductId}`)
-    .then(res => res.data)
-    .then(product => {
-      dispatch(setSelectedProduct(product));
-    })
-    .catch(err => console.error(err));
-};
-
