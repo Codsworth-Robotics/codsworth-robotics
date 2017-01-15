@@ -23,7 +23,7 @@ export const BrowseProducts = (props) => (
             <p>${ priceString(product.price) }</p>
             {
               (product.inventory > 0)
-              ? <button className="btn">Add to Cart</button>
+              ? <button className="btn-primary">Add to Cart</button>
               : <button className="btn" disabled="true">Out of Stock</button>
             }
           </div>
