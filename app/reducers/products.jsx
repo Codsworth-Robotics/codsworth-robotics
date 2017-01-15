@@ -45,15 +45,19 @@ export const loadProducts = () => {
     .catch(err => console.error(err));
 };
 
-// still performing an axios request here because I couldn't
-// figure out how to get to the application state from down here
-export const setSelectedProductId = (currentProductId) => {
+// request all products and then dispatch
+// another action to select by the id provided
+export const loadAllAndSelectOneProduct = (id) => {
   return dispatch =>
-    axios.get(`/api/products/${currentProductId}`)
+    axios.get('/api/products')
     .then(res => res.data)
-    .then(product => {
-      const action = setSelectedProduct(product);
-      dispatch(action);
+    .then(products => {
+      dispatch(getProducts(products));
+      // dispatch(setSelectedProduct(
+      //   products.find(product => {
+      //     return (product.id === (+id));
+      //   })
+      // ));
     })
     .catch(err => console.error(err));
 };

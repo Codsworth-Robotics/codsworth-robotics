@@ -16,7 +16,7 @@ import Orders from './components/Orders';
 import ProductDetail from './components/ProductDetail';
 import BrowseProducts from './components/BrowseProducts';
 
-import {loadProducts, setSelectedProductId} from './reducers/products';
+import {loadProducts, loadAllAndSelectOneProduct, setSelectedProduct} from './reducers/products';
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -32,12 +32,21 @@ const ExampleApp = connect(
 );
 
 const onBrowse = function () {
-  const thunk = loadProducts();
-  store.dispatch(thunk);
+  store.dispatch(loadProducts());
 };
 
 const setProduct = function (nextRouterState) {
-  store.dispatch(setSelectedProductId(nextRouterState.params.id));
+  if (store.getState().products === []) {
+    loadAllAndSelectOneProduct(+nextRouterState.params.id);
+  } else {
+    store.dispatch(
+      setSelectedProduct(
+        store.getState().products.find(product => {
+          return (product.id === (+nextRouterState.params.id));
+        })
+      )
+    );
+  }
 };
 
 render(
