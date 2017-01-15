@@ -5,7 +5,6 @@ import {render} from 'react-dom';
 import {connect, Provider} from 'react-redux';
 
 import store from './store';
-import App from './containers/App';
 import Jokes from './components/Jokes';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -13,8 +12,11 @@ import WhoAmI from './components/WhoAmI';
 import Checkout from './components/Checkout';
 import AddProduct from './components/AddProduct';
 import Orders from './components/Orders';
-import ProductDetail from './components/ProductDetail';
-import BrowseProducts from './components/BrowseProducts';
+
+import ProductDetailContainer from './components/ProductDetailContainer';
+import BrowseProductsContainer from './components/BrowseProductsContainer';
+
+import {loadProducts, setSelectedProductId} from './reducers/products';
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -29,6 +31,15 @@ const ExampleApp = connect(
     </div>
 );
 
+const onBrowse = function () {
+  const thunk = loadProducts();
+  store.dispatch(thunk);
+};
+
+const setProduct = function (nextRouterState) {
+  store.dispatch(setSelectedProductId(nextRouterState.params.id));
+};
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -38,8 +49,8 @@ render(
         <Route path="/checkout" component={Checkout} />
         <Route path="/products/add" component={AddProduct} />
         <Route path="/orders" component={Orders} />
-        <Route path="/products" component={BrowseProducts} />
-        <Route path="/products/:id" component={ProductDetail} />
+        <Route path="/products" component={BrowseProductsContainer} onEnter={onBrowse} />
+        <Route path="/products/:id" component={ProductDetailContainer} onEnter={setProduct} />
       </Route>
     </Router>
   </Provider>,
