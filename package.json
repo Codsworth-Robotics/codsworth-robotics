@@ -6,11 +6,11 @@
   "scripts": {
     "test": "bin/setup && mocha --compilers js:babel-register tests/*.test.js",
     "test-watch": "bin/setup && mocha --compilers js:babel-register --watch tests/*.test.js",
-    "build": "bin/setup && webpack && node-sass public/stylesheets/style.scss -o public/stylesheets/",
+    "build": "bin/setup && webpack && node-sass public/stylesheets/ -o public/stylesheets/",
     "build-watch": "bin/setup && webpack -w",
     "start": "webpack && bin/setup && nodemon server/start.js",
     "seed": "node db/seed.js",
-    "build-css": "node-sass -w public/stylesheets/style.scss -o public/stylesheets/"
+    "build-css": "node-sass -w public/stylesheets/ -o public/stylesheets/"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
     "lodash": "^4.17.4",
+    "moment": "^2.17.1",
     "node-sass": "^3.13.0",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
