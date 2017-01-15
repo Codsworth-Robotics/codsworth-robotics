@@ -14,7 +14,7 @@ export const ProductDetail = (props) => (
     <p>${priceString(props.selectedProduct.price)}</p>
     {
       (props.selectedProduct.inventory > 0)
-      ? <button className="btn" >Add to Cart</button>
+      ? <button className="btn-primary" >Add to Cart</button>
       : <button className="btn" disabled="true">Out of Stock</button>
     }
   </div>
@@ -26,10 +26,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(ProductDetail);

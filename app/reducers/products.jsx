@@ -34,31 +34,20 @@ export const setSelectedProduct = (product) => {
 };
 
 // request all products
-export const loadProducts = () => {
-  return dispatch =>
-    axios.get('/api/products')
-    .then(res => res.data)
-    .then(products => {
-      const action = getProducts(products);
-      dispatch(action);
-    })
-    .catch(err => console.error(err));
-};
-
-// request all products and then dispatch
-// another action to select by the id provided
-export const loadAllAndSelectOneProduct = (id) => {
+// if id is provided, the 'selectedProduct' will also be set
+export const loadProducts = (id = null) => {
   return dispatch =>
     axios.get('/api/products')
     .then(res => res.data)
     .then(products => {
       dispatch(getProducts(products));
-      // dispatch(setSelectedProduct(
-      //   products.find(product => {
-      //     return (product.id === (+id));
-      //   })
-      // ));
+      if (id != null) {
+        dispatch(setSelectedProduct(
+          products.find(product => {
+            return (product.id === (+id));
+          })
+        ));
+      }
     })
     .catch(err => console.error(err));
 };
-
