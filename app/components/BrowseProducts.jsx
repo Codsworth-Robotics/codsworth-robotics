@@ -9,11 +9,11 @@ export const BrowseProducts = (props) => (
   // currently displaying a 'cards' style product browser
   // would like to add a 'list view' toggle option
   // currently only displaying the first image in the array in this view
-  <div className="products-container">
+  <div className="products-container col-xs-12">
     {
       props.products.map(product => {
         return (
-          <div key={product.id} className="list-unstyled col-xs-4 product-card">
+          <div key={product.id} className="list-unstyled col-xs-3 product-card">
             <Link to={'/products/' + product.id}>
               <h3>{ product.name }</h3>
               <img src={ product.images[0] } />

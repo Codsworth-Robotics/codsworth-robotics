@@ -11,21 +11,7 @@ import Orders from './components/Orders';
 import ProductDetail from './components/ProductDetail';
 import BrowseProducts from './components/BrowseProducts';
 
-
 import {loadProducts, setSelectedProduct} from './reducers/products';
-
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? null : <Signup/>}
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-);
 
 const onBrowse = function () {
   store.dispatch(loadProducts());
@@ -59,6 +45,7 @@ render(
         <Route path="/orders" component={Orders} />
         <Route path="/products" component={BrowseProducts} onEnter={onBrowse} />
         <Route path="/products/:id" component={ProductDetail} onEnter={setProduct} />
+        <Route path="/products/" component={ProductDetail} onEnter={setProduct} />
       </Route>
     </Router>
   </Provider>,
