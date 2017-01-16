@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { deleteFromCart } from 'APP/app/reducers/cart';
+import {checkout} from 'APP/app/reducers/orders';
 import { priceString } from 'APP/app/utils';
 
 const Cart = props => {
@@ -31,7 +32,18 @@ const Cart = props => {
         </div>
       ))}
       <p>Order Total: ${priceString(props.cart.total)}</p>
-      <button>Checkout</button>
+      <form onSubmit={evt => {
+        evt.preventDefault();
+        props.checkout(
+          evt.target.email.value,
+          evt.target.shippingAddress.value
+        );
+      } }>
+        <input name="email" placeholder="Email" />
+        <input name="shippingAddress" placeholder="Shipping Address" />
+        <br/>
+        <input type="submit" value="Checkout" />
+      </form>
     </div>
   );
 };
@@ -43,6 +55,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteProduct (productId) {
     dispatch(deleteFromCart(productId));
+  },
+  checkout (email, shippingAddress) {
+    dispatch(checkout(email, shippingAddress));
   }
 });
 

@@ -2,19 +2,18 @@ import axios from 'axios';
 
 const initialState = {
   placeOrder: {
-    shippingAddress: null,
-    totalPrice: null
+    email: null,
+    shippingAddress: null
   },
   orderHistory: null
 };
 
-// not sure if we actually need this reducer...?
 const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state);
   switch (action.type) {
     case CREATE_ORDER:
+      newState.placeOrder.email = action.email;
       newState.placeOrder.shippingAddress = action.shippingAddress;
-      newState.placeOrder.totalPrice = action.totalPrice;
       break;
 
     case VIEW_ORDERS:
@@ -27,8 +26,8 @@ const reducer = (state = initialState, action) => {
 const CREATE_ORDER = 'CREATE_ORDER';
 const VIEW_ORDERS = 'VIEW_ORDERS';
 
-export const createOrder = (shippingAddress, totalPrice) => ({
-  type: CREATE_ORDER, shippingAddress, totalPrice
+export const createOrder = (email, shippingAddress) => ({
+  type: CREATE_ORDER, email, shippingAddress
 });
 
 export const viewOrders = orders => ({
@@ -36,11 +35,11 @@ export const viewOrders = orders => ({
   orders
 });
 
-export const checkout = (shippingAddress, totalPrice) =>
+export const checkout = (email, shippingAddress) =>
   dispatch =>
     axios.post('/api/orders',
-      {shippingAddress, totalPrice})
-        .then(() => dispatch(createOrder(shippingAddress, totalPrice)));
+      { email, shippingAddress })
+        .then(() => dispatch(createOrder(email, shippingAddress)));
 
 export const getOrderHistory = () =>
   dispatch =>
