@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, IndexLink } from 'react-router';
 import Signup from './Signup';
 import WhoAmI from './WhoAmI';
 import Login from './Login';
@@ -16,21 +17,21 @@ export default function (props) {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="#">Brand</a>
+          <IndexLink className="navbar-brand" to="/">Brand</IndexLink>
         </div>
         { /* Collect the nav links, forms, and other content for toggling */ }
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
             <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span className="caret"></span></a>
+              <a href="" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span className="caret"></span></a>
               <ul className="dropdown-menu">
                 <li><b>Categories</b></li>
-                <li><a href="#">All Products</a></li>
-                <li><a href="#">Butlers</a></li>
-                <li><a href="#">Chefs</a></li>
-                <li><a href="#">Gardeners</a></li>
+                <li><Link to="/products">All Products</Link></li>
+                <li><Link to="/products?category=butler">Butlers</Link></li>
+                <li><Link to="/products?category=chef">Chefs</Link></li>
+                <li><Link to="/products?category=gardener">Gardeners</Link></li>
                 <li role="separator" className="divider"></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><Link to="/products">This is nothing atm</Link></li>
               </ul>
             </li>
           </ul>
@@ -38,7 +39,7 @@ export default function (props) {
             <div className="form-group">
               <input type="text" className="form-control" placeholder="Search"/>
             </div>
-            <button type="submit" className="btn btn-default">Submit</button>
+            <button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>
           </form>
           <ul className="nav navbar-nav navbar-right">
             { /* Login and Logout are here temporarily, they will be moved to the Account dropdown menu eventually */ }
@@ -46,12 +47,13 @@ export default function (props) {
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span className="caret"></span></a>
               <ul className="dropdown-menu">
-                <li><a href="#">Your Account</a></li>
-                <li><a href="#">Your Orders</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><Link to="/account">Your Account</Link></li>
+                <li><Link to="/orders">Your Orders</Link></li>
+                { /* not 100% sure how to implement this */}
+                <li><Link to="/logout">Logout</Link></li>
               </ul>
             </li>
-            <li><a href="#">Cart</a></li>
+            <li><Link to="/cart"><i className="fa fa-shopping-cart"></i></Link></li>
           </ul>
         </div>{ /* /.navbar-collapse */ }
       </div>{ /* /.container-fluid */ }
