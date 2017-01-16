@@ -44,9 +44,10 @@ router.put('/', (req, res, next) => {
   }
 });
 
-router.delete('/', (req, res, next) => {
-  console.log(req.body.id); // undefined?!
-  req.session.cart = req.session.cart.filter(product => product.id !== req.body.id);
+router.delete('/:productId', (req, res, next) => {
+  req.session.cart = req.session.cart.filter(product =>
+    product.id !== +req.params.productId
+  );
   res.json(req.session.cart);
 });
 
