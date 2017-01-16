@@ -5,7 +5,7 @@ import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import store from './store';
 import App from './containers/App';
-import Jokes from './components/Jokes';
+import Home from './components/Home';
 import Checkout from './components/Checkout';
 import Orders from './components/Orders';
 import ProductDetail from './components/ProductDetail';
@@ -39,8 +39,8 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRedirect to="/products" />
-        <Route path="/jokes" component={Jokes} />
+        <IndexRedirect to="/home" />
+        <Route path="/home" component={Home} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/orders" component={Orders} />
         <Route path="/products" component={BrowseProducts} onEnter={onBrowse} />
