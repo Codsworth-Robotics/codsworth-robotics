@@ -20,8 +20,20 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
+.dropdown-menu > li > b {
+  text-align: center; }
+
 .dropdown-menu > .navbar-form {
   margin-left: 0; }
+
+.dropdown-menu > .navbar-form .btn-default {
+  border: 1px solid transparent;
+  border-top: 0;
+  border-color: #ccc;
+  border-radius: 0 0 4px 4px; }
+
+.dropdown-menu > .navbar-form .form-password {
+  border-bottom-right-radius: 0; }
 
 #main.container {
   padding-left: 0; }

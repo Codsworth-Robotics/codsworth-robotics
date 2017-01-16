@@ -32,12 +32,11 @@ export default function (props) {
               <a href="" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop <span className="caret"></span></a>
               <ul className="dropdown-menu">
                 <li><b>Categories</b></li>
+                <li role="separator" className="divider"></li>
                 <li><Link to="/products">All Products</Link></li>
                 <li><Link to="/products?category=butler">Butlers</Link></li>
                 <li><Link to="/products?category=chef">Chefs</Link></li>
                 <li><Link to="/products?category=gardener">Gardeners</Link></li>
-                <li role="separator" className="divider"></li>
-                <li><Link to="/products">This is nothing atm</Link></li>
               </ul>
             </li>
           </ul>
