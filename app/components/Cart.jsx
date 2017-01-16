@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { deleteFromCart } from 'APP/app/reducers/cart';
 
 const Cart = props => {
   return (
@@ -19,20 +22,16 @@ const Cart = props => {
             <p>Quantity: {product.quantity}</p>
           </div>
           <div className="col-xs-3">
-            <button onClick={() => {
-              console.log(product.id);
-              props.deleteProduct(product.id);
-            }}
-            >Remove from Cart</button>
+            <button
+              onClick={() => props.deleteProduct(product.id)}>
+                Remove from Cart
+            </button>
           </div>
         </div>
       ))}
     </div>
   );
 };
-
-import {deleteFromCart} from 'APP/app/reducers/cart';
-import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
   cart: state.cart

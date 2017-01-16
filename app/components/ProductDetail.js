@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import {priceString} from 'APP/app/utils.js';
-import {addToCart} from 'APP/app/reducers/cart';
+import { priceString } from 'APP/app/utils.js';
+import { addToCart } from 'APP/app/reducers/cart';
 
 export const ProductDetail = (props) => (
 
