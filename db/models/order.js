@@ -58,7 +58,7 @@ const Orders = db.define('orders', {
       .then(orderproduct => {
         return orderproduct.update({quantity, price: product.price});
       })
-      .then(prderproduct => {
+      .then(orderproduct => {
         return this.update({ totalPrice: this.totalPrice + product.price * quantity });
       });
     },
