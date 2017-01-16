@@ -2,7 +2,7 @@
 import React from 'react';
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import {render} from 'react-dom';
-import {Provider, connect} from 'react-redux';
+import {Provider} from 'react-redux';
 import store from './store';
 import App from './containers/App';
 import Jokes from './components/Jokes';
