@@ -14,22 +14,14 @@ import ProductDetail from './components/ProductDetail';
 import BrowseProducts from './components/BrowseProducts';
 
 import {loadProducts, setSelectedProduct} from './reducers/products';
-
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? null : <Signup/>}
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-);
+import {loadCart} from './reducers/cart';
 
 const onBrowse = function () {
   store.dispatch(loadProducts());
+};
+
+const onCartEnter = function () {
+  store.dispatch(loadCart());
 };
 
 // (state.products.length == 0) when a user visits a product
@@ -58,7 +50,7 @@ render(
         <Route path="/jokes" component={Jokes} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/orders" component={Orders} />
-        <Route path="/cart" component={Cart} />
+        <Route path="/cart" component={Cart} onEnter={onCartEnter} />
         <Route path="/products" component={BrowseProducts} onEnter={onBrowse} />
         <Route path="/products/:id" component={ProductDetail} onEnter={setProduct} />
       </Route>

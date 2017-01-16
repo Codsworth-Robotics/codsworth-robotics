@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import {priceString} from 'APP/app/utils.js';
+import {addToCart} from 'APP/app/reducers/cart';
 
 export const ProductDetail = (props) => (
 
@@ -15,7 +16,10 @@ export const ProductDetail = (props) => (
     <p>${priceString(props.selectedProduct.price)}</p>
     {
       (props.selectedProduct.inventory > 0)
-      ? <button className="btn-primary" >Add to Cart</button>
+      ? <button className="btn-primary"
+          onClick={() => props.addToCart(props.selectedProduct.id)}>
+            Add to Cart
+        </button>
       : <button className="btn" disabled="true">Out of Stock</button>
     }
   </div>
@@ -27,6 +31,13 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  addToCart (productId) {
+    dispatch(addToCart(productId));
+  }
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ProductDetail);
