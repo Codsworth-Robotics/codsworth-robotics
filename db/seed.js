@@ -76,7 +76,10 @@ db.didSync
         .then(ratingProduct => {
           return createdReview.setProduct(ratingProduct)
           .then(updatedReview => {
-            console.log(`Created new Review for ${ratingProduct.name} rating ${rating.id}.  User for the review is ${createdReview.user_id} and for the rating is ${rating.user_id}`);
+            const reviewUser = userArr.find(user => {
+              return user.id === createdReview.user_id;
+            });
+            console.log(`Created new Review for ${ratingProduct.name} rating ${rating.id}.  User for the review is ${reviewUser.displayName} and for the rating is ${rating.user_id}`);
           });
         }));
       }
@@ -96,21 +99,33 @@ db.didSync
           return order.setUser(user);
         })
         .then(order => {
-          const addProductToOrderArr = [];
-          const numOfProducts = Math.floor(Math.random() * 10) + 1;
-          for (let j = 0; j < numOfProducts; j++) {
-            const userProduct = Math.floor(Math.random() * 5);
-            addProductToOrderArr.push(order.addProductToOrder(productArr[userProduct]));
-          }
-          console.log(`Added ${numOfProducts} random products to order Number ${order.orderID}`);
-          return db.Promise.all(addProductToOrderArr);
-        })
-        .then(order => {
-          console.log('Success!');
+          return order;
         }));
       }
     });
     return db.Promise.all(arrOfOrderPromises);
+  })
+  .then(orders => {
+    const addProductToOrderArr = [];
+    orders.map(order => {
+      let productCounter = 0;
+      let numOfProducts = 0;
+      productArr.map(product => {
+        numOfProducts = Math.floor(Math.random() * 4);
+        if (numOfProducts > 0) {
+          addProductToOrderArr.push(order.addProductToOrder(product, numOfProducts));
+        }
+        productCounter += numOfProducts;
+      });
+      const orderUser = userArr.find(user => {
+        return user.id === order.user_id;
+      });
+      console.log(`Added ${productCounter} random products to order Number ${order.orderID} for User ${orderUser.displayName}`);
+    });
+    return db.Promise.all(addProductToOrderArr);
+  })
+  .then(products => {
+    console.log('Finished!!');
   })
   .catch(error => console.error(error))
   .finally(() => db.close());
