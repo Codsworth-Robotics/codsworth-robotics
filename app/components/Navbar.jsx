@@ -6,6 +6,13 @@ import Login from './Login';
 
 
 export default function (props) {
+  const calcCartQuantity = () => {
+    let total = 0;
+    for (let i = 0; i < props.cart.length; i++) {
+      total += props.cart[i].quantity;
+    }
+    return total;
+  };
   return (
     <nav className="navbar navbar-default">
       <div className="container-fluid">
@@ -35,9 +42,9 @@ export default function (props) {
               </ul>
             </li>
           </ul>
-          <form className="navbar-form navbar-left">
+          <form className="navbar-form navbar-left" onSubmit={props.handleSubmit}>
             <div className="form-group">
-              <input type="text" className="form-control" placeholder="Search"/>
+              <input type="text" value={props.searchValue} className="form-control" placeholder="Search" onChange={props.handleChange}/>
             </div>
             <button type="submit" className="btn btn-default"><i className="fa fa-search"></i></button>
           </form>
@@ -53,7 +60,7 @@ export default function (props) {
                 <li><Link to="/logout">Logout</Link></li>
               </ul>
             </li>
-            <li><Link to="/cart"><i className="fa fa-shopping-cart"></i></Link></li>
+            <li><Link to="/cart"><i className={props.cart.length > 0 ? 'fa fa-shopping-cart active' : 'fa fa-shopping-cart'}></i> {props.cart.length > 0 ? (<span style={{color: '#337ab7', marginRight: 0}}>{calcCartQuantity()}</span>) : null}</Link></li>
           </ul>
         </div>{ /* /.navbar-collapse */ }
       </div>{ /* /.container-fluid */ }

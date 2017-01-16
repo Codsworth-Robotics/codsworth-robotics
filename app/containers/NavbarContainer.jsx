@@ -1,13 +1,29 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+import store from '../store';
+import { connect } from 'react-redux';
+import { changeSearchValue, submitSearch } from '../reducers/search';
 
 import Navbar from '../components/Navbar';
 
-import {connect} from 'react-redux';
-
 const mapStateToProps = state => {
   return {
-    user: state.auth
+    user: state.auth,
+    searchValue: state.searchValue,
+    cart: state.cart
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = dispatch => ({
+  handleChange (event) {
+    dispatch(changeSearchValue(event.target.value));
+  },
+  handleSubmit (event) {
+    event.preventDefault();
+    const oldState = store.getState().searchValue;
+    dispatch(submitSearch());
+    browserHistory.push(`/products?search=${oldState}`);
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

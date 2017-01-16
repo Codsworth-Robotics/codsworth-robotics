@@ -25,3 +25,6 @@
 
 #main.container {
   padding-left: 0; }
+
+i.fa.fa-shopping-cart.active {
+  color: #337ab7; }
