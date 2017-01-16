@@ -9,11 +9,11 @@ const seedUsers = () => db.Promise.map([
 ], user => db.model('users').create(user));
 
 const seedProducts = () => db.Promise.map([
-  {name: 'Codsworth', description: 'The robot from Fallout now in your home!', price: 90025},
-  {name: 'C3PO', description: 'Fluent in over six million forms of communication', price: 1700000},
-  {name: 'Dot Matrix', description: 'Perfect for the runaway rebellious princess in your life!', price: 12345},
-  {name: 'Bending Unit 22', description: 'Runs on alcohol and the wallets of passerbys.', price: 300000},
-  {name: 'Marvin', description: 'Comes with the all new Genuine People Personalities technology pre-installed!', price: 4200}
+  {name: 'Codsworth', description: 'The robot from Fallout now in your home!', price: 90025, images: ['http://vignette1.wikia.nocookie.net/fallout/images/8/80/Codsworth_model.png/revision/latest?cb=20160227140409']},
+  {name: 'C3PO', description: 'Fluent in over six million forms of communication', price: 1700000, images: ['https://upload.wikimedia.org/wikipedia/en/5/5c/C-3PO_droid.png']},
+  {name: 'Dot Matrix', description: 'Perfect for the runaway rebellious princess in your life!', price: 12345, images: ['https://s-media-cache-ak0.pinimg.com/736x/48/d7/21/48d721c8b21e87e70f79779c3442a290.jpg']},
+  {name: 'Bending Unit 22', description: 'Runs on alcohol and the wallets of passerbys.', price: 300000, images: ['https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png']},
+  {name: 'Marvin', description: 'Comes with the all new Genuine People Personalities technology pre-installed!', price: 4200, images: ['https://s-media-cache-ak0.pinimg.com/originals/cc/9a/c5/cc9ac53b36a3a9f0dd341d767d5e6fe7.png']}
 ], product => db.model('products').create(product));
 
 let userArr, productArr;
