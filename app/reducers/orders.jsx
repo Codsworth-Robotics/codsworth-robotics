@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 const initialState = {
   placeOrder: {
@@ -39,7 +40,8 @@ export const checkout = (email, shippingAddress) =>
   dispatch =>
     axios.post('/api/orders',
       { email, shippingAddress })
-        .then(() => dispatch(createOrder(email, shippingAddress)));
+        .then(() => dispatch(createOrder(email, shippingAddress)))
+        .then(() => browserHistory.push('/checkout/success'));
 
 export const getOrderHistory = () =>
   dispatch =>

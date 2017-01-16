@@ -32,7 +32,6 @@ router.put('/', (req, res, next) => {
     Product.findById(req.body.id)
     .then(product => {
       req.session.cart.products.push({
-        // Object.assign({}, product, {quantity: 1})
         id: product.id,
         name: product.name,
         category: product.category,

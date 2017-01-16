@@ -2,25 +2,11 @@ const router = require('express')();
 const Order = require('APP/db/models/order');
 const Product = require('APP/db/models/product');
 
-// information that needs to be sent as part of the order:
-// order table
-  // address
-  // totalPrice
-  // user_id, if available...not sure sequelize will be happy about us not including it?
-// orderproducts table
-  // find order id
-  // product ids
-  // price per product
-  // quantity
-// email???? --> will probably need to create column in orders table
-
-// check total price before creating
-
 router.post('/', (req, res, next) => {
   Order.create({
-    // email: req.body.email
+    email: req.body.email,
     shippingAddress: req.body.shippingAddress,
-    user_id: req.user.id
+    user_id: req.user && req.user.id
   })
   .then(order => {
     return req.session.cart.products.map(product => {
@@ -31,7 +17,6 @@ router.post('/', (req, res, next) => {
     });
   })
   .then(order => {
-    console.log(order);
     res.json(order);
   })
   .catch(error => console.error(error));
