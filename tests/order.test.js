@@ -57,10 +57,7 @@ describe('Orders', () => {
         return createdProduct.save();
       })
       .then(product => {
-        return createdOrder.addProductToOrder(createdProduct);
-      })
-      .then(order => {
-        return createdOrder.addProductToOrder(createdProduct);
+        return createdOrder.addProductToOrder(createdProduct, 2);
       })
       .then(order => {
         return OrderProduct.findOne({
