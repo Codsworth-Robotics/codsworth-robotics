@@ -3,7 +3,6 @@ const debug = require('debug')('sql');
 const chalk = require('chalk');
 const Sequelize = require('sequelize');
 const sequelizeNoUpdateAttributes = require('sequelize-noupdate-attributes');
-const Promise = require('bluebird');
 const app = require('APP');
 
 const name = (process.env.DATABASE_NAME || app.name) +
