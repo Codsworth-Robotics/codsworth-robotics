@@ -45,7 +45,6 @@ render(
         <Route path="/orders" component={Orders} />
         <Route path="/products" component={BrowseProducts} onEnter={onBrowse} />
         <Route path="/products/:id" component={ProductDetail} onEnter={setProduct} />
-        <Route path="/products/" component={ProductDetail} onEnter={setProduct} />
       </Route>
     </Router>
   </Provider>,
