@@ -9,11 +9,11 @@ const seedUsers = () => db.Promise.map([
 ], user => db.model('users').create(user));
 
 const seedProducts = () => db.Promise.map([
-  {name: 'Codsworth', description: 'The robot from Fallout now in your home!', price: 90025},
-  {name: 'C3PO', description: 'Fluent in over six million forms of communication', price: 1700000},
-  {name: 'Dot Matrix', description: 'Perfect for the runaway rebellious princess in your life!', price: 12345},
-  {name: 'Bending Unit 22', description: 'Runs on alcohol and the wallets of passerbys.', price: 300000},
-  {name: 'Marvin', description: 'Comes with the all new Genuine People Personalities technology pre-installed!', price: 4200}
+  {name: 'Codsworth', description: 'The robot from Fallout now in your home!', price: 90025, images: ['http://vignette1.wikia.nocookie.net/fallout/images/8/80/Codsworth_model.png/revision/latest?cb=20160227140409'], category: ['butler', 'gardener', 'chef'], inventory: 100},
+  {name: 'C3PO', description: 'Fluent in over six million forms of communication', price: 1700000, images: ['https://upload.wikimedia.org/wikipedia/en/5/5c/C-3PO_droid.png'], category: ['butler', 'household', 'translator'], inventory: 1},
+  {name: 'Dot Matrix', description: 'Perfect for the runaway rebellious princess in your life!', price: 12345, images: ['https://s-media-cache-ak0.pinimg.com/736x/48/d7/21/48d721c8b21e87e70f79779c3442a290.jpg'], category: ['maid', 'household', 'chef', 'royalty'], inventory: 0},
+  {name: 'Bending Unit 22', description: 'Runs on alcohol and the wallets of passerbys.', price: 300000, images: ['https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png'], category: ['industrial', 'social'], inventory: 1000000},
+  {name: 'Marvin', description: 'Comes with the all new Genuine People Personalities technology pre-installed!', price: 4200, images: ['https://s-media-cache-ak0.pinimg.com/originals/cc/9a/c5/cc9ac53b36a3a9f0dd341d767d5e6fe7.png'], category: ['butler', 'chef', 'social', 'industrial'], inventory: 1}
 ], product => db.model('products').create(product));
 
 let userArr, productArr;
@@ -76,7 +76,10 @@ db.didSync
         .then(ratingProduct => {
           return createdReview.setProduct(ratingProduct)
           .then(updatedReview => {
-            console.log(`Created new Review for ${ratingProduct.name} rating ${rating.id}.  User for the review is ${createdReview.user_id} and for the rating is ${rating.user_id}`);
+            const reviewUser = userArr.find(user => {
+              return user.id === createdReview.user_id;
+            });
+            console.log(`Created new Review for ${ratingProduct.name} rating ${rating.id}.  User for the review is ${reviewUser.displayName} and for the rating is ${rating.user_id}`);
           });
         }));
       }
@@ -96,21 +99,33 @@ db.didSync
           return order.setUser(user);
         })
         .then(order => {
-          const addProductToOrderArr = [];
-          const numOfProducts = Math.floor(Math.random() * 10) + 1;
-          for (let j = 0; j < numOfProducts; j++) {
-            const userProduct = Math.floor(Math.random() * 5);
-            addProductToOrderArr.push(order.addProductToOrder(productArr[userProduct]));
-          }
-          console.log(`Added ${numOfProducts} random products to order Number ${order.orderID}`);
-          return db.Promise.all(addProductToOrderArr);
-        })
-        .then(order => {
-          console.log('Success!');
+          return order;
         }));
       }
     });
     return db.Promise.all(arrOfOrderPromises);
+  })
+  .then(orders => {
+    const addProductToOrderArr = [];
+    orders.map(order => {
+      let productCounter = 0;
+      let numOfProducts = 0;
+      productArr.map(product => {
+        numOfProducts = Math.floor(Math.random() * 4);
+        if (numOfProducts > 0) {
+          addProductToOrderArr.push(order.addProductToOrder(product, numOfProducts));
+        }
+        productCounter += numOfProducts;
+      });
+      const orderUser = userArr.find(user => {
+        return user.id === order.user_id;
+      });
+      console.log(`Added ${productCounter} random products to order Number ${order.orderID} for User ${orderUser.displayName}`);
+    });
+    return db.Promise.all(addProductToOrderArr);
+  })
+  .then(products => {
+    console.log('Finished!!');
   })
   .catch(error => console.error(error))
   .finally(() => db.close());
