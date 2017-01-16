@@ -117,6 +117,7 @@ db.didSync
       const userOrder = Math.round(Math.random() * 5);
       for (let i = 0; i < userOrder; i++) {
         arrOfOrderPromises.push(db.model('orders').create({
+          email: 'someone@somewhere.com',
           shippingAddress: '1234 Fake Lane, Nontown, Earth 12345'
         })
         .then(order => {
