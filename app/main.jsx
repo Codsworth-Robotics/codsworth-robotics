@@ -3,7 +3,6 @@ import React from 'react';
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
-
 import store from './store';
 import App from './containers/App';
 import Home from './components/Home';
@@ -12,18 +11,16 @@ import Orders from './components/Orders';
 import ProductDetail from './components/ProductDetail';
 import BrowseProducts from './components/BrowseProducts';
 
-
 import {loadProducts, setSelectedProduct} from './reducers/products';
-
-// (state.products.length == 0) when a user visits a product
-//   detail page through a bookmark or direct url
-//   in this case, loadProducts(id) will set the selected product
-//   after first loading all products
 
 const onBrowse = function () {
   store.dispatch(loadProducts());
 };
 
+// (state.products.length == 0) when a user visits a product
+//   detail page through a bookmark or direct url
+//   in this case, loadProducts(id) will set the selected product
+//   after first loading all products
 const setProduct = function (nextRouterState) {
   if (store.getState().products.length === 0) {
     store.dispatch(loadProducts(+nextRouterState.params.id));

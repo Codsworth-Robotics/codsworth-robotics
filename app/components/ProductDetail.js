@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import {priceString} from 'APP/app/utils.js';
+import { priceString } from 'APP/app/utils.js';
 
 export const ProductDetail = (props) => (
 
@@ -15,8 +15,8 @@ export const ProductDetail = (props) => (
     <p>${priceString(props.selectedProduct.price)}</p>
     {
       (props.selectedProduct.inventory > 0)
-      ? <button className="btn-primary" >Add to Cart</button>
-      : <button className="btn" disabled="true">Out of Stock</button>
+      ? <button className="btn btn-primary" >Add to Cart</button>
+      : <button className="btn btn-disabled" disabled="true">Out of Stock</button>
     }
   </div>
 );
