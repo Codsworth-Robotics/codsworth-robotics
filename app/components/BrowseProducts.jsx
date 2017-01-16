@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { priceString } from 'APP/app/utils.js';
 import { addToCart } from 'APP/app/reducers/cart';
@@ -15,22 +15,31 @@ export const BrowseProducts = (props) => {
   // search filters can also be added here as an else-if
   if (props.location.query.category !== undefined) {
     viewProducts = props.products.filter(product => {
-      return (product.category[0].toLowerCase() === props.location.query.category);
+      return (product.category.includes(props.location.query.category));
     });
+  } else if (props.searchTerm !== undefined) {
+    viewProducts = props.products.filter(product => {
+      return (product.name.includes(props.searchTerm));
+    });
+    // redirect to product detail page if search results contains only 1 element
+    //     disabled for now
+    // if (viewProducts.length === 1) browserHistory.push(`{/products/${viewProducts[0].id}}`);
   } else {
     viewProducts = props.products;
   }
 
   return (
-    <div className="products-container col-xs-12">
+    <div className="products-container">
       {
         viewProducts &&
         viewProducts.map(product => {
           return (
-            <div key={product.id} className="list-unstyled col-xs-3 product-card">
+            <div key={product.id} className="col-xs-4 product-card">
               <Link to={'/products/' + product.id}>
-                <h3>{ product.name }</h3>
                 <img src={ product.images[0] } />
+                <div className="card-header">
+                  <h1>{ product.name }</h1>
+                </div>
               </Link>
               <p>{ product.category }</p>
               <p>{ product.description }</p>
@@ -53,7 +62,8 @@ export const BrowseProducts = (props) => {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    products: state.products,
+    searchTerm: state.searchTerm
   };
 };
 
