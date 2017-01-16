@@ -12,12 +12,18 @@ const Cart = props => {
           <div className="col-xs-3">
             { /* name should link to product when FE product route is completed */ }
             <p>{product.name}</p>
+            {product.inventory > 0 ? <p>In Stock</p> : <p>Out of Stock</p>}
           </div>
           <div className="col-xs-3">
             <p>Price: ${product.price / 100}</p>
+            <p>Quantity: {product.quantity}</p>
           </div>
           <div className="col-xs-3">
-            <p>Quantity: {product.quantity}</p>
+            <button onClick={() => {
+              console.log(product.id);
+              props.deleteProduct(product.id);
+            }}
+            >Remove from Cart</button>
           </div>
         </div>
       ))}
@@ -25,13 +31,20 @@ const Cart = props => {
   );
 };
 
-
+import {deleteFromCart} from 'APP/app/reducers/cart';
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
   cart: state.cart
 });
 
+const mapDispatchToProps = dispatch => ({
+  deleteProduct (productId) {
+    dispatch(deleteFromCart(productId));
+  }
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Cart);

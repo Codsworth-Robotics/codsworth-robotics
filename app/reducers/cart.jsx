@@ -30,6 +30,12 @@ export const loadCart = () =>
 // Not sure I'll need to dispatch `getCart` here...?
 export const addToCart = productId =>
   dispatch =>
-    axios.put('/api/cart/update', {id: productId})
+    axios.put('/api/cart', {id: productId})
+      .then(res => dispatch(getCart(res.data)))
+      .catch(err => console.error(err));
+
+export const deleteFromCart = productId =>
+  dispatch =>
+    axios.delete('/api/cart', {id: productId})
       .then(res => dispatch(getCart(res.data)))
       .catch(err => console.error(err));
