@@ -20,6 +20,9 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
+.dropdown-menu > .navbar-form {
+  margin-left: 0; }
+
 #main.container {
   padding-left: 0; }
 

@@ -10,8 +10,8 @@ export const Login = ({ login }) => (
         login(evt.target.username.value, evt.target.password.value);
       }}>
         <li>Username: <input className="form-control" name="username" /></li>
-        <li>Password: <input name="password" type="password" /></li>
-        <li><input type="submit" value="Login" /></li>
+        <li>Password: <input className="form-control" name="password" type="password" /></li>
+        <li><button type="submit" className="btn btn-default">Login</button></li>
       </form>
       <li><Link to="/orders">Your Orders</Link></li>
     </ul>
