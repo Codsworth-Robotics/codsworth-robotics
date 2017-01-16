@@ -39,19 +39,27 @@ const Orders = db.define('orders', {
 }, {
   hooks: {
     beforeValidate: function (order) {
-      order.orderDate = Date.now();
+      if (!order.orderDate) {
+        order.orderDate = Date.now();
+      }
     }
   },
   instanceMethods: {
-    addProductToOrder: function (product) {
-      return OrderProduct.findOne({
-        where: {
-          product_id: product.id,
-          order_orderID: this.orderID
-        }
+    addProductToOrder: function (product, quantity) {
+      return this.addProduct(product)
+      .then(result => {
+        return OrderProduct.findOne({
+          where: {
+            product_id: product.id,
+            order_orderID: this.orderID
+          }
+        });
       })
       .then(orderproduct => {
-        return orderproduct ? orderproduct.update({quantity: orderproduct.quantity + 1}) : this.addProduct(product);
+        return orderproduct.update({quantity, price: product.price});
+      })
+      .then(orderproduct => {
+        return this.update({ totalPrice: this.totalPrice + product.price * quantity });
       });
     },
     removeProductFromOrder: function (product) {

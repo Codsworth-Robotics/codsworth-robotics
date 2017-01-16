@@ -10,7 +10,7 @@ const Product = db.define('products', {
   },
   category: {
     type: Sequelize.ARRAY(Sequelize.STRING),
-    defaultValue: ['Butler'],
+    defaultValue: ['butler'],
     validate: {
       notEmpty: true
     }

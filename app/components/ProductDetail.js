@@ -20,7 +20,7 @@ export const ProductDetail = (props) => (
           onClick={() => props.addToCart(props.selectedProduct.id)}>
             Add to Cart
         </button>
-      : <button className="btn" disabled="true">Out of Stock</button>
+      : <button className="btn btn-disabled" disabled="true">Out of Stock</button>
     }
   </div>
 );
