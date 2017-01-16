@@ -7,9 +7,6 @@
   border-bottom: 1px solid #cfcfcf;
   box-shadow: 1px 0 0 0 #e7e7e7, -1px 0 0 0 #e7e7e7; }
 
-.nav-user {
-  padding: 10px 15px; }
-
 @media (min-width: 1010px) {
   .navbar-form {
     margin-left: 35px; } }
