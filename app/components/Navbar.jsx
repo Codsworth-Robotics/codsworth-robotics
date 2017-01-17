@@ -23,7 +23,7 @@ export default function (props) {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <IndexLink className="navbar-brand" to="/">Brand</IndexLink>
+          <IndexLink className="navbar-brand" to="/">Codsworth Robotics</IndexLink>
         </div>
         { /* Collect the nav links, forms, and other content for toggling */ }
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

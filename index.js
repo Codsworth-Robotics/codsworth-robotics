@@ -31,7 +31,7 @@ if (!reasonableName.test(pkg.name)) {
 //
 // and add it to the environment.
 const env = Object.create(process.env);
-const secretsFile = resolve(env.HOME, `.${pkg.name}.env`);
+const secretsFile = resolve(`.${pkg.name}.env`);
 try {
   Object.assign(env, require(secretsFile));
 } catch (error) {

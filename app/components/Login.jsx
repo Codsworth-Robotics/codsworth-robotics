@@ -1,6 +1,8 @@
 import React from 'react';
+import { login, signup, googleLogin } from 'APP/app/reducers/auth';
+import { connect } from 'react-redux';
 
-export const Login = ({ login, signup }) => (
+export const Login = (props) => (
   <li className="dropdown">
     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login/Signup <span className="caret"></span></a>
     <ul className="dropdown-menu">
@@ -13,6 +15,7 @@ export const Login = ({ login, signup }) => (
         <li>Password: <input className="form-control form-password" name="password" type="password" /></li>
         <li><div className="align-right"><button type="submit" className="btn btn-default">Login</button></div></li>
       </form>
+      <li><p><form className="navbar-form" onSubmit={props.googleLogin}><button type="submit" className="btn btn-social btn-google"><i className="fa fa-google" /><span>Log in with Google</span></button></form></p></li>
       <li role="separator" className="divider"></li>
       <li><b>Signup</b></li>
       <form className="navbar-form" onSubmit={evt => {
@@ -29,10 +32,11 @@ export const Login = ({ login, signup }) => (
   </li>
 );
 
-import {login, signup} from 'APP/app/reducers/auth';
-import {connect} from 'react-redux';
+const mapDispatchToProps = dispatch => ({
+  googleLogin (evt) {
+    evt.preventDefault();
+    dispatch(googleLogin());
+  }
+});
 
-export default connect(
-  state => ({}),
-  {login, signup},
-)(Login);
+export default connect(state => ({}), mapDispatchToProps)(Login);
