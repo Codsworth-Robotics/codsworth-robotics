@@ -7,6 +7,7 @@ const User = require('APP/db/models/user');
 const OAuth = require('APP/db/models/oauth');
 const auth = require('express').Router();
 const _ = require('lodash');
+app.rootUrl = 'http://127.0.0.1:1337';
 
 
 /*************************
@@ -138,6 +139,10 @@ auth.post('/local/signup', (req, res, next) => {
     });
   })
   .catch(next);
+});
+
+auth.get('/:strategy', (req, res, next) => {
+  passport.authenticate(req.params.strategy, { scope: 'email' });
 });
 
 auth.post('/:strategy/login', (req, res, next) =>

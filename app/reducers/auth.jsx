@@ -29,7 +29,7 @@ export const login = (username, password) =>
 
 export const googleLogin = () =>
   dispatch =>
-    axios.post('api/auth/google/login', {})
+    axios.get('/api/auth/google', {})
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()));
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import store from '../store';
 import { connect } from 'react-redux';
 import { changeSearchValue, submitSearch } from '../reducers/search';
 
