@@ -1,38 +1,45 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { priceString } from 'APP/app/utils.js';
 import { addToCart } from 'APP/app/reducers/cart';
 
-  // currently displaying a 'cards' style product browser
-  // would like to add a 'list view' toggle option
-  // currently only displaying the first image in the array in this view
+
 export const BrowseProducts = (props) => {
-  let viewProducts = [];  // filtered subset of all products
+  let viewProducts = props.products;  // filtered subset of all products
 
   // filter based on category
   // search filters can also be added here as an else-if
   if (props.location.query.category !== undefined) {
-    viewProducts = props.products.filter(product => {
-      return (product.category[0].toLowerCase() === props.location.query.category);
+    viewProducts = viewProducts.filter(product => {
+      return (product.category.includes(props.location.query.category));
     });
-  } else {
-    viewProducts = props.products;
+    console.log('category filtered');
+  }
+
+  console.log('props searchTerm: ', props.searchTerm);
+  if (props.searchTerm !== undefined && props.searchTerm.filterValue !== undefined) {
+    viewProducts = viewProducts.filter(product => {
+      return (product.name.includes(props.searchTerm.filterValue));
+    });
+    console.log('search filtered');
   }
 
   return (
-    <div className="products-container col-xs-12">
+    <div className="products-container">
       {
         viewProducts &&
         viewProducts.map(product => {
           return (
-            <div key={product.id} className="list-unstyled col-xs-3 product-card">
+            <div key={product.id} className="col-xs-4 product-card">
               <Link to={'/products/' + product.id}>
-                <h3>{ product.name }</h3>
                 <img src={ product.images[0] } />
+                <div className="card-header">
+                  <h1>{ product.name }</h1>
+                </div>
               </Link>
-              <p>{ product.category }</p>
+              <p className="weak">{ product.category.join(' / ') }</p>
               <p>{ product.description }</p>
               <p>${ priceString(product.price) }</p>
               {
@@ -53,7 +60,8 @@ export const BrowseProducts = (props) => {
 
 const mapStateToProps = state => {
   return {
-    products: state.products
+    products: state.products,
+    searchTerm: state.filtertext
   };
 };
 
