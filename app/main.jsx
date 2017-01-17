@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
+import { Router, Route, IndexRedirect, browserHistory, Redirect } from 'react-router';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -54,6 +54,7 @@ render(
         <Route path="/cart" component={Cart} onEnter={onCartEnter} />
         <Route path="/products" component={BrowseProducts} onEnter={onBrowse} />
         <Route path="/products/:id" component={ProductDetail} onEnter={setProduct} />
+        <Redirect from='/logout' to='/home' />
       </Route>
     </Router>
   </Provider>,
