@@ -21,8 +21,14 @@ router.put('/', (req, res, next) => {
   let found = false;
   for (let i = 0; i < req.session.cart.products.length; i++) {
     if (req.body.id === req.session.cart.products[i].id) {
-      req.session.cart.products[i].quantity ++;
-      req.session.cart.total += req.session.cart.products[i].price;
+      if (req.body.quantity) {
+        const oldQuantity = req.session.cart.products[i].quantity;
+        req.session.cart.products[i].quantity += req.body.quantity - oldQuantity;
+        req.session.cart.total += (req.session.cart.products[i].quantity - oldQuantity) * req.session.cart.products[i].price;
+      } else {
+        req.session.cart.products[i].quantity ++;
+        req.session.cart.total += req.session.cart.products[i].price;
+      }
       res.json(req.session.cart);
       found = true;
       break;
