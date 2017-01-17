@@ -21,7 +21,7 @@ router.post('/', (req, res, next) => {
       );
     });
   })
-  .then(order => {
+  .then(() => {
     sendEmail(
       email,
       'Your Recent Codsworth Robotics Order',
@@ -29,7 +29,8 @@ router.post('/', (req, res, next) => {
       Thank you for your recent Codsworth Robotics order.
       Your order number is ${orderNum}. Please keep this for your records.`
       );
-    res.json(order);
+    req.session.cart = { products: [], total: 0 };
+    res.json(req.session.cart);
   })
   .catch(next);
 });
