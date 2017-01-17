@@ -1,11 +1,15 @@
+const defaultState = {
+  searchValue: '',
+  filterValue: ''
+};
 /* ----------------- REDUCERS -------------------- */
 
-export default function (state = '', action) {
+export default function (state = defaultState, action) {
   switch (action.type) {
     case CHANGE_VALUE:
-      return action.value;
+      return Object.assign({}, state, { searchValue: action.value, filterValue: action.value });
     case SUBMIT_SEARCH:
-      return '';
+      return Object.assign({}, state, { searchValue: '' });
     default: return state;
   }
 }

@@ -9,7 +9,7 @@ import Navbar from '../components/Navbar';
 const mapStateToProps = state => {
   return {
     user: state.auth,
-    searchValue: state.searchValue,
+    searchValue: state.filtertext.searchValue,
     cart: state.cart
   };
 };
@@ -20,9 +20,8 @@ const mapDispatchToProps = dispatch => ({
   },
   handleSubmit (event) {
     event.preventDefault();
-    const oldState = store.getState().searchValue;
     dispatch(submitSearch());
-    browserHistory.push(`/products?search=${oldState}`);
+    browserHistory.push(`/products`);
   }
 });
 

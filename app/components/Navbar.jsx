@@ -13,7 +13,7 @@ export default function (props) {
     return total;
   };
   return (
-    <nav className="navbar navbar-default">
+    <nav className="navbar navbar-default navbar-fixed-top col-xs-12">
       <div className="container-fluid">
         { /* Brand and toggle get grouped for better mobile display */ }
         <div className="navbar-header">
