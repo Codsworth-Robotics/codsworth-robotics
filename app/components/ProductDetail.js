@@ -5,7 +5,7 @@ import { priceString } from 'APP/app/utils.js';
 import { addToCart } from 'APP/app/reducers/cart';
 
 import { ProductDetailImageViewer } from './ProductDetailImageViewer';
-import { ProductReviews } from './ProductReviews';
+import ProductReviews from './ProductReviews';
 
 
 export const ProductDetail = (props) => (
@@ -17,7 +17,7 @@ export const ProductDetail = (props) => (
           props.selectedProduct.name &&
         <ProductDetailText selectedProduct={props.selectedProduct} />
         }
-        </div>
+        </div> {}
         <div className="test-border col-sm-9">
         {
           props.selectedProduct.name &&
@@ -27,7 +27,7 @@ export const ProductDetail = (props) => (
       </div>
     </div>
     <div className="row">
-      <ProductReviews selectedProduct={props.selectedProduct} />
+      <ProductReviews />
     </div>
   </div>
 );
@@ -60,7 +60,8 @@ export const ProductDetailText = (props) => {
 
 const mapStateToProps = state => {
   return {
-    selectedProduct: state.selectedProduct
+    selectedProduct: state.selectedProduct,
+    reviews: state.reviews
   };
 };
 

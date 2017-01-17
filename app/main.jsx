@@ -12,7 +12,7 @@ import Cart from './components/Cart';
 import ProductDetail from './components/ProductDetail';
 import BrowseProducts from './components/BrowseProducts';
 
-import { loadProducts, setSelectedProduct } from './reducers/products';
+import { loadProducts, setSelectedProduct, loadReviews } from './reducers/products';
 import { loadCart } from './reducers/cart';
 
 
@@ -30,6 +30,7 @@ const onCartEnter = function () {
 //   in this case, loadProducts(id) will set the selected product
 //   after first loading all products
 const setProduct = function (nextRouterState) {
+  store.dispatch(loadReviews(+nextRouterState.params.id));
   if (store.getState().products.length === 0) {
     store.dispatch(loadProducts(+nextRouterState.params.id));
   } else {
