@@ -1,10 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export const WhoAmI = ({ user, logout }) => (
-  <div className="whoami">
-    <span className="whoami-user-name">Hello, {user && user.firstName}</span>
-    <button className="logout" onClick={logout}>Logout</button>
-  </div>
+  <li className="dropdown">
+    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span className="caret"></span></a>
+    <ul className="dropdown-menu">
+      <li><Link to="/account">Your Account</Link></li>
+      <li><Link to="/orders">Your Orders</Link></li>
+      <li onClick={logout}><Link to="/logout">Logout</Link></li>
+    </ul>
+  </li>
 );
 
 import {logout} from 'APP/app/reducers/auth';

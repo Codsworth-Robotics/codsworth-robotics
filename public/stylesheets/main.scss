@@ -19,3 +19,12 @@ body {
 h1, .h1, h2, .h2, h3, .h3 {
   font-weight: 300;
 }
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#main.container {
+  margin-top: 50px;
+}
