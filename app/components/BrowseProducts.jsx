@@ -21,9 +21,6 @@ export const BrowseProducts = (props) => {
     viewProducts = props.products.filter(product => {
       return (product.name.includes(props.searchTerm));
     });
-    // redirect to product detail page if search results contains only 1 element
-    //     disabled for now
-    // if (viewProducts.length === 1) browserHistory.push(`{/products/${viewProducts[0].id}}`);
   } else {
     viewProducts = props.products;
   }
@@ -63,7 +60,7 @@ export const BrowseProducts = (props) => {
 const mapStateToProps = state => {
   return {
     products: state.products,
-    searchTerm: state.searchTerm
+    searchTerm: state.filterText
   };
 };
 
