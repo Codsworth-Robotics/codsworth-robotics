@@ -37,7 +37,7 @@ export const BrowseProducts = (props) => {
               <p>${ priceString(product.price) }</p>
               {
                 (product.inventory > 0)
-                ? <button className="btn-primary"
+                ? <button className="btn btn-primary"
                     onClick={() => props.addToCart(product.id)}>
                       Add to Cart
                   </button>

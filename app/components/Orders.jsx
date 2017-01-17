@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router';
 
 import { priceString } from 'APP/app/utils.js';
 import { addToCart } from 'APP/app/reducers/cart';
@@ -54,10 +55,10 @@ export class Orders extends Component {
                     <img src={`${product.images[0]}`} />
                   </div>
                   <div className="col-xs-4">
-                    { /* name should link to product when FE product route is completed */ }
-                    <p>{product.name}</p>
-                    { /* this button is currently not functional */ }
-                    <button className="btn-primary"
+                    <Link to={`/products/${product.id}`}>
+                      <p>{product.name}</p>
+                    </Link>
+                    <button className="btn btn-primary"
                       onClick={() => this.props.addToCart(product.id)}>
                         Buy It Again
                     </button>

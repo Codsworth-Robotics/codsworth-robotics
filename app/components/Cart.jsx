@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { deleteFromCart } from 'APP/app/reducers/cart';
 import {checkout} from 'APP/app/reducers/orders';
@@ -15,8 +16,9 @@ const Cart = props => {
             <img src={`${product.images[0]}`} />
           </div>
           <div className="col-xs-3">
-            { /* name should link to product when FE product route is completed */ }
-            <p>{product.name}</p>
+            <Link to={`/products/${product.id}`}>
+              <p>{product.name}</p>
+            </Link>
             {product.inventory > 0 ? <p>In Stock</p> : <p>Out of Stock</p>}
           </div>
           <div className="col-xs-3">
