@@ -5,24 +5,25 @@ import { Link } from 'react-router';
 import { priceString } from 'APP/app/utils.js';
 import { addToCart } from 'APP/app/reducers/cart';
 
-  // currently displaying a 'cards' style product browser
-  // would like to add a 'list view' toggle option
-  // currently only displaying the first image in the array in this view
+
 export const BrowseProducts = (props) => {
-  let viewProducts = [];  // filtered subset of all products
+  let viewProducts = props.products;  // filtered subset of all products
 
   // filter based on category
   // search filters can also be added here as an else-if
   if (props.location.query.category !== undefined) {
-    viewProducts = props.products.filter(product => {
+    viewProducts = viewProducts.filter(product => {
       return (product.category.includes(props.location.query.category));
     });
-  } else if (props.searchTerm !== undefined) {
-    viewProducts = props.products.filter(product => {
-      return (product.name.includes(props.searchTerm));
+    console.log('category filtered');
+  }
+
+  console.log('props searchTerm: ', props.searchTerm);
+  if (props.searchTerm !== undefined && props.searchTerm.filterValue !== undefined) {
+    viewProducts = viewProducts.filter(product => {
+      return (product.name.includes(props.searchTerm.filterValue));
     });
-  } else {
-    viewProducts = props.products;
+    console.log('search filtered');
   }
 
   return (
@@ -38,7 +39,7 @@ export const BrowseProducts = (props) => {
                   <h1>{ product.name }</h1>
                 </div>
               </Link>
-              <p>{ product.category }</p>
+              <p className="weak">{ product.category.join(' / ') }</p>
               <p>{ product.description }</p>
               <p>${ priceString(product.price) }</p>
               {
@@ -60,7 +61,7 @@ export const BrowseProducts = (props) => {
 const mapStateToProps = state => {
   return {
     products: state.products,
-    searchTerm: state.filterText
+    searchTerm: state.filtertext
   };
 };
 

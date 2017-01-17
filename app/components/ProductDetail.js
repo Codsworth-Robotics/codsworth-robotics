@@ -15,7 +15,7 @@ export const ProductDetail = (props) => (
         <div className="col-sm-3 card">
         {
           props.selectedProduct.name &&
-        <ProductDetailText selectedProduct={props.selectedProduct} />
+        <ProductDetailText selectedProduct={props.selectedProduct} addToCart={props.addToCart}/>
         }
         </div> {}
         <div className="test-border col-sm-9">
@@ -34,6 +34,7 @@ export const ProductDetail = (props) => (
 
 
 export const ProductDetailText = (props) => {
+  console.log(props);
   return (
     // props.selectedProduct.name &&
     //   (

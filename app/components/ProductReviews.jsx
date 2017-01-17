@@ -8,7 +8,6 @@ export class ProductReviews extends Component {
   }
 
   render () {
-    console.log('props are:', this.props);
     return (
       <div className="card product-detail-container col-xs-9">
         <h2>User Reviews</h2>
@@ -24,7 +23,6 @@ export class ProductReviews extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state.reviews: ', state.reviews);
   return {
     product: state.selectedProduct,
     reviews: state.reviews
