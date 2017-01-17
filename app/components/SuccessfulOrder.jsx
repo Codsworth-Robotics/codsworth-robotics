@@ -5,7 +5,7 @@ const SuccessfulOrder = () => {
     <div>
       <h2>Thank you for your order!</h2>
       <p>Your order # is 23904892304820948. (But that's not actually your order number.)</p>
-      <p>A confirmation email has been sent to the email you provided. (But that email hasn't actually been sent.)</p>
+      <p>A confirmation email has been sent to the email you provided.</p>
     </div>
   );
 };
