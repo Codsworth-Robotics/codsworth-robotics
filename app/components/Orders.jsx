@@ -1,5 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router';
+
+import { priceString } from 'APP/app/utils.js';
+import { addToCart } from 'APP/app/reducers/cart';
 
 export class Orders extends Component {
   componentDidMount () {
@@ -33,7 +37,7 @@ export class Orders extends Component {
             <div className="order-subheader">
               <div className="row">
                 <div className="col-xs-3">
-                  <p><strong>Total:</strong> ${order.totalPrice / 100}</p>
+                  <p><strong>Total:</strong> ${priceString(order.totalPrice)}</p>
                 </div>
                 <div className="col-xs-3">
                   <p><strong>Status:</strong> {this.capitalizeOrderStatus(order.status)}</p>
@@ -51,14 +55,17 @@ export class Orders extends Component {
                     <img src={`${product.images[0]}`} />
                   </div>
                   <div className="col-xs-4">
-                    { /* name should link to product when FE product route is completed */ }
-                    <p>{product.name}</p>
-                    { /* this button is currently not functional */ }
-                    <button>Buy It Again</button>
+                    <Link to={`/products/${product.id}`}>
+                      <p>{product.name}</p>
+                    </Link>
+                    <button className="btn btn-primary"
+                      onClick={() => this.props.addToCart(product.id)}>
+                        Buy It Again
+                    </button>
                   </div>
                   <div className="col-xs-5 align-right">
                     <p>Quantity: {product.orderproducts.quantity}</p>
-                    <p>Price: ${product.price / 100}</p>
+                    <p>Price: ${priceString(product.price)}</p>
                   </div>
                 </div>
               ))}
@@ -80,6 +87,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getOrderHistory () {
     dispatch(getOrderHistory());
+  },
+  addToCart (productId) {
+    dispatch(addToCart(productId));
   }
 });
 

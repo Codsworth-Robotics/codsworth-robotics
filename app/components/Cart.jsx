@@ -1,24 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { deleteFromCart } from 'APP/app/reducers/cart';
+import {checkout} from 'APP/app/reducers/orders';
+import { priceString } from 'APP/app/utils';
 
 const Cart = props => {
   return (
     <div className="product-details">
       <h3>Your Cart</h3>
-      {props.cart.map(product => (
+      {props.cart.products.map(product => (
         <div key={product.id} className="row single-product">
           <div className="col-xs-3">
             <img src={`${product.images[0]}`} />
           </div>
           <div className="col-xs-3">
-            { /* name should link to product when FE product route is completed */ }
-            <p>{product.name}</p>
+            <Link to={`/products/${product.id}`}>
+              <p>{product.name}</p>
+            </Link>
             {product.inventory > 0 ? <p>In Stock</p> : <p>Out of Stock</p>}
           </div>
           <div className="col-xs-3">
-            <p>Price: ${product.price / 100}</p>
+            <p>Price: ${priceString(product.price)}</p>
             <p>Quantity: {product.quantity}</p>
           </div>
           <div className="col-xs-3">
@@ -29,6 +33,19 @@ const Cart = props => {
           </div>
         </div>
       ))}
+      <p>Order Total: ${priceString(props.cart.total)}</p>
+      <form onSubmit={evt => {
+        evt.preventDefault();
+        props.checkout(
+          evt.target.email.value,
+          evt.target.shippingAddress.value
+        );
+      } }>
+        <input name="email" placeholder="Email" />
+        <input name="shippingAddress" placeholder="Shipping Address" />
+        <br/>
+        <input type="submit" value="Checkout" />
+      </form>
     </div>
   );
 };
@@ -40,6 +57,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteProduct (productId) {
     dispatch(deleteFromCart(productId));
+  },
+  checkout (email, shippingAddress) {
+    dispatch(checkout(email, shippingAddress));
   }
 });
 
