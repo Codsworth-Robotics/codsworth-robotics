@@ -15,15 +15,13 @@ export const BrowseProducts = (props) => {
     viewProducts = viewProducts.filter(product => {
       return (product.category.includes(props.location.query.category));
     });
-    console.log('category filtered');
   }
 
-  console.log('props searchTerm: ', props.searchTerm);
+  // filter based on searchTerm.filterValue text
   if (props.searchTerm !== undefined && props.searchTerm.filterValue !== undefined) {
     viewProducts = viewProducts.filter(product => {
       return (product.name.includes(props.searchTerm.filterValue));
     });
-    console.log('search filtered');
   }
 
   return (
@@ -39,17 +37,19 @@ export const BrowseProducts = (props) => {
                   <h1>{ product.name }</h1>
                 </div>
               </Link>
-              <p className="weak">{ product.category.join(' / ') }</p>
-              <p>{ product.description }</p>
-              <p>${ priceString(product.price) }</p>
-              {
-                (product.inventory > 0)
-                ? <button className="btn btn-primary"
-                    onClick={() => props.addToCart(product.id)}>
-                      Add to Cart
-                  </button>
-                : <button className="btn btn-disabled" disabled="true">Out of Stock</button>
-              }
+              <div className="text-container">
+                <p className="weak">{ product.category.join(' / ') }</p>
+                <p>{ product.description }</p>
+                <p>${ priceString(product.price) }</p>
+                {
+                  (product.inventory > 0)
+                  ? <button className="btn btn-primary"
+                      onClick={() => props.addToCart(product.id)}>
+                        Add to Cart
+                    </button>
+                  : <button className="btn btn-disabled" disabled="true">Out of Stock</button>
+                }
+              </div>
             </div>
           );
         })

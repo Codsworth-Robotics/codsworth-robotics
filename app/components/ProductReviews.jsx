@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 export class ProductReviews extends Component {
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.state = {};
   }
 
