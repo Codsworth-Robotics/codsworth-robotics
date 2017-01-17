@@ -7,8 +7,8 @@ import Login from './Login';
 export default function (props) {
   const calcCartQuantity = () => {
     let total = 0;
-    for (let i = 0; i < props.cart.length; i++) {
-      total += props.cart[i].quantity;
+    for (let i = 0; i < props.cart.products.length; i++) {
+      total += props.cart.products[i].quantity;
     }
     return total;
   };
@@ -50,7 +50,7 @@ export default function (props) {
             { /* This is set as a link to /account so I can be lazy and not have to write the css to style it */}
             <li className="nav-user"><Link to='/account'>Hello, {props.user ? props.user.firstName || 'Guest' : 'Guest'}</Link></li>
             {props.user === null || Object.keys(props.user).length === 0 ? <Login/> : <WhoAmI/>}
-            <li><Link to="/cart"><i className={props.cart.length > 0 ? 'fa fa-shopping-cart active' : 'fa fa-shopping-cart'}></i> {props.cart.length > 0 ? (<span style={{color: '#337ab7', marginRight: 0}}>{calcCartQuantity()}</span>) : null}</Link></li>
+            <li><Link to="/cart"><i className={props.cart.products.length > 0 ? 'fa fa-shopping-cart active' : 'fa fa-shopping-cart'}></i> {props.cart.products.length > 0 ? (<span style={{color: '#337ab7', marginRight: 0}}>{calcCartQuantity()}</span>) : null}</Link></li>
           </ul>
         </div>{ /* /.navbar-collapse */ }
       </div>{ /* /.container-fluid */ }

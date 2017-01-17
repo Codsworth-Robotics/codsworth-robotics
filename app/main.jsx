@@ -6,9 +6,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './containers/App';
 import Home from './components/Home';
-import Checkout from './components/Checkout';
 import Orders from './components/Orders';
 import Cart from './components/Cart';
+import SuccessfulOrder from './components/SuccessfulOrder';
 import ProductDetail from './components/ProductDetail';
 import BrowseProducts from './components/BrowseProducts';
 
@@ -49,9 +49,9 @@ render(
       <Route path="/" component={App}>
         <IndexRedirect to="/home" />
         <Route path="/home" component={Home} />
-        <Route path="/checkout" component={Checkout} />
         <Route path="/orders" component={Orders} />
         <Route path="/cart" component={Cart} onEnter={onCartEnter} />
+        <Route path="/checkout/success" component={SuccessfulOrder} />
         <Route path="/products" component={BrowseProducts} onEnter={onBrowse} />
         <Route path="/products/:id" component={ProductDetail} onEnter={setProduct} />
         <Redirect from='/logout' to='/home' />

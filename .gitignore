@@ -17,4 +17,5 @@ npm-debug.log
 #Ignore boxie for now
 boxie/*
 
-*.env.js
+#env vars
+.env

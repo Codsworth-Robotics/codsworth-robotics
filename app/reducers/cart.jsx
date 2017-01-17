@@ -1,8 +1,13 @@
 import axios from 'axios';
 
+const initialState = {
+  products: [],
+  total: 0
+};
+
 /* ----------------- REDUCERS -------------------- */
 
-export default function (state = [], action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_CART:
       return action.cart;

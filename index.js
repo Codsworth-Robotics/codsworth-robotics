@@ -1,5 +1,6 @@
 'use strict';
 
+require('dotenv').config();
 const {resolve} = require('path');
 const chalk = require('chalk');
 const pkg = require('./package.json');

@@ -11,6 +11,13 @@ const Orders = db.define('orders', {
     primaryKey: true,
     allowNull: false
   },
+  email: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true
+    },
+    allowNull: false
+  },
   shippingAddress: {
     type: Sequelize.STRING,
     validate: {

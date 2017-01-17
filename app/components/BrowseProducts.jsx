@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
 import { priceString } from 'APP/app/utils.js';
+import { addToCart } from 'APP/app/reducers/cart';
 
   // currently displaying a 'cards' style product browser
   // would like to add a 'list view' toggle option
@@ -36,7 +37,10 @@ export const BrowseProducts = (props) => {
               <p>${ priceString(product.price) }</p>
               {
                 (product.inventory > 0)
-                ? <button className="btn btn-primary">Add to Cart</button>
+                ? <button className="btn btn-primary"
+                    onClick={() => props.addToCart(product.id)}>
+                      Add to Cart
+                  </button>
                 : <button className="btn btn-disabled" disabled="true">Out of Stock</button>
               }
             </div>
@@ -53,6 +57,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart (productId) {
+      dispatch(addToCart(productId));
+    }
+  };
+};
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(BrowseProducts);
