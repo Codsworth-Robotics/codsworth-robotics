@@ -53,11 +53,11 @@ OAuth.setupStrategy({
 // environment variables.
 OAuth.setupStrategy({
   provider: 'google',
-  strategy: require('passport-google-oauth').Strategy,
+  strategy: require('passport-google-oauth').OAuth2Strategy,
   config: {
-    consumerKey: env.GOOGLE_CONSUMER_KEY,
-    consumerSecret: env.GOOGLE_CONSUMER_SECRET,
-    callbackURL: `${app.rootUrl}/api/auth/login/google`
+    clientID: env.GOOGLE_CONSUMER_KEY,
+    clientSecret: env.GOOGLE_CONSUMER_SECRET,
+    callbackURL: `${app.rootUrl}/api/auth/google/login`
   },
   passport
 });
@@ -142,8 +142,15 @@ auth.post('/local/signup', (req, res, next) => {
 });
 
 auth.get('/:strategy', (req, res, next) => {
-  passport.authenticate(req.params.strategy, { scope: 'email' });
+  console.log('Route Hit!', req.params.strategy);
+  passport.authenticate(req.params.strategy, { scope: 'email' })(req, res, next);
 });
+
+auth.get('/:strategy/login', (req, res, next) =>
+  passport.authenticate(req.params.strategy, {
+    successRedirect: '/'
+  })(req, res, next)
+);
 
 auth.post('/:strategy/login', (req, res, next) =>
   passport.authenticate(req.params.strategy, {

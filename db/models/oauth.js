@@ -24,34 +24,33 @@ const OAuth = db.define('oauths', {
 });
 
 OAuth.V2 = (accessToken, refreshToken, profile, done) =>
-  this.findOrCreate({
+  OAuth.findOrCreate({
     where: {
       provider: profile.provider,
       uid: profile.id
     }})
-    .then(oauth => {
+    .then(([ oauth, bool ]) => {
       debug('provider:%s will log in user:{name=%s uid=%s}',
         profile.provider,
         profile.displayName,
-        token.uid);
+        oauth.uid);
       oauth.profileJson = profile;
       return db.Promise.props({
         oauth,
-        user: token.getUser(),
         _saveProfile: oauth.save()
       });
     })
-    .then(({ oauth, user }) => user ||
-      User.create({
-        name: profile.displayName
-      }).then(user => db.Promise.props({
-        user,
-        _setOauthUser: oauth.setUser(user)
-      }))
-    )
-    .then(({ user }) => done(null, user))
-    .catch(done);
-
+    .then(({ oauth }) => User.findOrCreate({
+      where: {
+        email: profile.emails[0].value
+      }
+    }).then(user => db.Promise.props({
+      user,
+      _setOauthUser: oauth.setUser(user)
+    }))
+  )
+  .then(({ user }) => done(null, user))
+  .catch(done);
 
 OAuth.setupStrategy =
 ({

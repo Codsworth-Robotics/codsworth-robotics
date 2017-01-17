@@ -15,7 +15,7 @@ export const Login = (props) => (
         <li>Password: <input className="form-control form-password" name="password" type="password" /></li>
         <li><div className="align-right"><button type="submit" className="btn btn-default">Login</button></div></li>
       </form>
-      <li><a href='/api/auth/google'><i className="fa fa-google" /><span>Log in with Google</span></a></li>
+      <li><a href='/api/auth/google' target="_self"><i className="fa fa-google" /><span>Log in with Google</span></a></li>
       <li role="separator" className="divider"></li>
       <li><b>Signup</b></li>
       <form className="navbar-form" onSubmit={evt => {

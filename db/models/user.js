@@ -50,6 +50,13 @@ const User = db.define('users', {
     displayName: function () {
       return `${this.firstName} ${this.lastName[0]}.`;
     }
+  },
+  setterMethods: {
+    name: function (fullname) {
+      const nameArr = fullname.split(' ');
+      this.setDataValue('firstName', nameArr[0]);
+      this.setDataValue('lastName', nameArr[1]);
+    }
   }
 });
 
