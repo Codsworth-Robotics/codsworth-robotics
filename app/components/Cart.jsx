@@ -8,27 +8,39 @@ import { priceString } from 'APP/app/utils';
 
 const Cart = props => {
   return (
-    <div className="product-details">
-      <h3>Your Cart</h3>
-      {props.cart.products.map(product => (
-        <CartProduct key={product.id}
-          product={product}
-          updateQuantity={props.updateQuantity}
-          deleteProduct={props.deleteProduct} />
-      ))}
-      <p>Order Total: ${priceString(props.cart.total)}</p>
-      <form onSubmit={evt => {
-        evt.preventDefault();
-        props.checkout(
-          evt.target.email.value,
-          evt.target.shippingAddress.value
-        );
-      }}>
-        <input name="email" placeholder="Email" />
-        <input name="shippingAddress" placeholder="Shipping Address" />
-        <br/>
-        <input type="submit" value="Checkout" />
-      </form>
+    <div className="cart-container">
+      <h1>Your Cart</h1>
+      <div className="cart">
+        {props.cart.products.map(product => (
+          <CartProduct key={product.id}
+            product={product}
+            updateQuantity={props.updateQuantity}
+            deleteProduct={props.deleteProduct} />
+        ))}
+      </div>
+      <div className="cart order-total center">
+        <h3>Order Total: ${priceString(props.cart.total)}</h3>
+      </div>
+      <h1>Your Information</h1>
+      <div className="cart">
+        <form className="form-group" onSubmit={evt => {
+          evt.preventDefault();
+          props.checkout(
+            evt.target.email.value,
+            evt.target.shippingAddress.value
+          );
+        }}>
+          <div className="input-group checkout-information">
+            <label htmlFor="email">Preferred Email:</label>
+            <input name="email" type="email" className="form-control" placeholder="example@example.com" />
+          </div>
+          <div className="input-group checkout-information">
+            <label htmlFor="address">Shipping Address:</label>
+            <input name="shippingAddress" type="address" className="form-control" placeholder="1234 Example Lane, Candyland, NY 10000" />
+          </div>
+          <button type="submit" className="btn btn-success button-radius">Checkout</button>
+        </form>
+      </div>
     </div>
   );
 };

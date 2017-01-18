@@ -1,6 +1,9 @@
 body {
   background: #DDE1E6; }
 
+.center {
+  text-align: center; }
+
 .align-right {
   text-align: right; }
 
