@@ -4,8 +4,8 @@ import { priceString } from 'APP/app/utils.js';
 
 export const ProductDetailText = (props) => {
   return (
-      <div className="">
-        <div className="">
+      <div>
+        <div>
           <h1>{props.selectedProduct.name}</h1>
           <p className="weak">{ props.selectedProduct.category.join(' / ') }</p>
           <p>{props.selectedProduct.description}</p>

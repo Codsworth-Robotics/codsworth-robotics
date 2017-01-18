@@ -5,7 +5,7 @@ import { addToCart } from 'APP/app/reducers/cart';
 
 import { ProductDetailImageViewer } from './ProductDetailImageViewer';
 import ProductReviews from './ProductReviews';
-import {ProductDetailText} from './ProductDetailText';
+import { ProductDetailText } from './ProductDetailText';
 
 
 export const ProductDetail = (props) => (

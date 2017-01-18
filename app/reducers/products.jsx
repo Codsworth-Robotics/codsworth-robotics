@@ -54,7 +54,7 @@ export const loadProducts = (id = null) => {
     .then(res => res.data)
     .then(products => {
       dispatch(getProducts(products));
-      if (id != null) {
+      if (id !== null) {
         dispatch(setSelectedProduct(
           products.find(product => {
             return (product.id === (+id));

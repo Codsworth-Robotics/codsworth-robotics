@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-
-import { priceString } from 'APP/app/utils.js';
 import { addToCart } from 'APP/app/reducers/cart';
+import { ProductCardView } from './ProductCard';
 
 
 export const BrowseProducts = (props) => {
@@ -30,27 +28,7 @@ export const BrowseProducts = (props) => {
         viewProducts &&
         viewProducts.map(product => {
           return (
-            <div key={product.id} className="col-xs-4 product-card">
-              <Link to={'/products/' + product.id}>
-                <img src={ product.images[0] } />
-                <div className="card-header">
-                  <h1>{ product.name }</h1>
-                </div>
-              </Link>
-              <div className="text-container">
-                <p className="weak">{ product.category.join(' / ') }</p>
-                <p>{ product.description }</p>
-                <p>${ priceString(product.price) }</p>
-                {
-                  (product.inventory > 0)
-                  ? <button className="btn btn-primary"
-                      onClick={() => props.addToCart(product.id)}>
-                        Add to Cart
-                    </button>
-                  : <button className="btn btn-disabled" disabled="true">Out of Stock</button>
-                }
-              </div>
-            </div>
+            <ProductCardView key={product.id} product={product} />
           );
         })
       }

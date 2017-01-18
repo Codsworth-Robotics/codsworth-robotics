@@ -19,7 +19,6 @@ router.get('/', (req, res, next) => {
 router.put('/', (req, res, next) => {
   if (!req.session.cart) req.session.cart = { products: [], total: 0 };
   let found = false;
-  console.log(req.session);
   for (let i = 0; i < req.session.cart.products.length; i++) {
     if (req.body.id === req.session.cart.products[i].id) {
       req.session.cart.products[i].quantity ++;
