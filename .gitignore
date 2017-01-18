@@ -19,3 +19,4 @@ boxie/*
 
 #env vars
 .env
+.env.js
