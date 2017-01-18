@@ -100,6 +100,7 @@ passport.deserializeUser(
 
 passport.use(new (require('passport-local').Strategy)(
   (email, password, done) => {
+    console.log('local strategy hit!');
     debug('will authenticate user(email: "%s")', email);
     User.findOne({where: {email}})
       .then(user => {
@@ -122,7 +123,8 @@ passport.use(new (require('passport-local').Strategy)(
 ));
 
 auth.get('/whoami', (req, res) => {
-  res.send(_.pick(req.user, ['firstName', 'lastName', 'email', 'id', 'displayName']));
+  console.log(req.user);
+  res.send(_.pick(req.user, ['firstName', 'lastName', 'email', 'id']));
 });
 
 auth.post('/local/signup', (req, res, next) => {
@@ -142,7 +144,6 @@ auth.post('/local/signup', (req, res, next) => {
 });
 
 auth.get('/:strategy', (req, res, next) => {
-  console.log('Route Hit!', req.params.strategy);
   passport.authenticate(req.params.strategy, { scope: 'email' })(req, res, next);
 });
 
@@ -152,10 +153,12 @@ auth.get('/:strategy/login', (req, res, next) =>
   })(req, res, next)
 );
 
-auth.post('/:strategy/login', (req, res, next) =>
+auth.post('/:strategy/login', (req, res, next) => {
+  console.log('route hit!');
   passport.authenticate(req.params.strategy, {
     successRedirect: '/'
-  })(req, res, next)
+  })(req, res, next);
+}
 );
 
 auth.post('/logout', (req, res, next) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { login, signup, googleLogin } from 'APP/app/reducers/auth';
+import { login, signup } from 'APP/app/reducers/auth';
 import { connect } from 'react-redux';
 
 export const Login = (props) => (
@@ -32,11 +32,5 @@ export const Login = (props) => (
   </li>
 );
 
-const mapDispatchToProps = dispatch => ({
-  googleLogin (evt) {
-    evt.preventDefault();
-    dispatch(googleLogin());
-  }
-});
 
-export default connect(state => ({}), mapDispatchToProps)(Login);
+export default connect(state => ({}))(Login);

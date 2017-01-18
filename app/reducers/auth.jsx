@@ -21,17 +21,13 @@ export const signup = (firstName, lastName, username, password) =>
       .catch(() => dispatch(whoami()));
 
 export const login = (username, password) =>
-  dispatch =>
+  dispatch => {
+    console.log('Reducer Hit!');
     axios.post('/api/auth/local/login',
       {username, password})
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()));
-
-export const googleLogin = () =>
-  dispatch =>
-    axios.get('/api/auth/google', {})
-      .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()));
+  };
 
 export const logout = () =>
   dispatch =>
