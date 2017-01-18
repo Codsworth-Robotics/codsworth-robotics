@@ -39,6 +39,12 @@ export const addToCart = productId =>
       .then(res => dispatch(getCart(res.data)))
       .catch(err => console.error(err));
 
+export const updateQuantity = (productId, quantity) =>
+  dispatch =>
+    axios.put('/api/cart', {id: productId, quantity})
+      .then(res => dispatch(getCart(res.data)))
+      .catch(err => console.error(err));
+
 export const deleteFromCart = productId =>
   dispatch =>
     axios.delete(`/api/cart/${productId}`)

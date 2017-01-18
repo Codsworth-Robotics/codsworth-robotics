@@ -1,6 +1,15 @@
 const router = require('express')();
 const Product = require('APP/db/models/product');
 
+// To calculate the total price of the order, given the items in the cart
+function calculateOrderTotal (products) {
+  let total = 0;
+  products.forEach(product =>
+    total += product.price * product.quantity
+  );
+  return total;
+}
+
 // This route will only be triggered if a user follows a link to get to their cart
 // If the session doesn't have a cart associated with it, it will create a cart
 // Otherwise, the cart will be sent to the front-end
@@ -21,8 +30,16 @@ router.put('/', (req, res, next) => {
   let found = false;
   for (let i = 0; i < req.session.cart.products.length; i++) {
     if (req.body.id === req.session.cart.products[i].id) {
-      req.session.cart.products[i].quantity ++;
-      req.session.cart.total += req.session.cart.products[i].price;
+      if (req.body.quantity) {
+        const oldQuantity = req.session.cart.products[i].quantity;
+        req.session.cart.products[i].quantity += req.body.quantity - oldQuantity;
+        if (req.session.cart.products[i].quantity === 0) {
+          req.session.cart.products.splice(i, 1);
+        }
+      } else {
+        req.session.cart.products[i].quantity ++;
+      }
+      req.session.cart.total = calculateOrderTotal(req.session.cart.products);
       res.json(req.session.cart);
       found = true;
       break;
@@ -53,10 +70,7 @@ router.delete('/:productId', (req, res, next) => {
   req.session.cart.products = req.session.cart.products.filter(product =>
     product.id !== +req.params.productId
   );
-  req.session.cart.total = 0;
-  req.session.cart.products.forEach(product =>
-    req.session.cart.total += product.price * product.quantity
-  );
+  req.session.cart.total = calculateOrderTotal(req.session.cart.products);
   res.json(req.session.cart);
 });
 
