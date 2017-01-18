@@ -36,8 +36,8 @@ export class ProductReviews extends Component {
     } else {
       return (
         <div className="card product-reviews-box col-xs-10">
-          <h3>Too bad sucka!</h3>
-          <p>lol you thought you was gonna review some shit</p>
+           <Link to="#" onClick={this.togglePane}>User Reviews</Link> | <strong>Write a Review</strong>
+          <h3>Write a Review</h3>
         </div>
       );
     }

@@ -35,6 +35,7 @@
   margin: 5px;
   border-color: white;
   .main-image {
+    padding: 1em;
     max-height: 600px;
     max-width:  100%; 
     margin-bottom: 1em;
@@ -63,9 +64,8 @@
     padding: 1em 1em; }
 
 }
-
-
+/*
 .card > :hover {
   box-shadow: 5px 5px 5px grey;
 }
-
+*/
