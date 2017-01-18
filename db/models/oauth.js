@@ -40,11 +40,21 @@ OAuth.V2 = (accessToken, refreshToken, profile, done) =>
         _saveProfile: oauth.save()
       });
     })
-    .then(({ oauth }) => User.findOrCreate({
+    .then(({ oauth }) => User.find({
       where: {
         email: profile.emails[0].value
       }
-    }).then(user => db.Promise.props({
+    })
+    .then(user => {
+      if (user) return user;
+      const nameArr = profile.displayName.split(' ');
+      return User.create({
+        firstName: nameArr[0],
+        lastName: nameArr[1],
+        email: profile.emails[0].value
+      });
+    })
+    .then(user => db.Promise.props({
       user,
       _setOauthUser: oauth.setUser(user)
     }))

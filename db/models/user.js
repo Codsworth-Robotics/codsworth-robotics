@@ -13,6 +13,17 @@ const User = db.define('users', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  name: {
+    type: Sequelize.VIRTUAL,
+    set: function (fullname) {
+      const nameArr = fullname.split(' ');
+      this.setDataValue('firstName', nameArr[0]);
+      this.setDataValue('lastName', nameArr[1]);
+    },
+    get: function () {
+      return `${this.getDataValue('firstName')} ${this.getDataValue('lastName')}`;
+    }
+  },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -49,13 +60,6 @@ const User = db.define('users', {
     // For product reviews
     displayName: function () {
       return `${this.firstName} ${this.lastName[0]}.`;
-    }
-  },
-  setterMethods: {
-    name: function (fullname) {
-      const nameArr = fullname.split(' ');
-      this.setDataValue('firstName', nameArr[0]);
-      this.setDataValue('lastName', nameArr[1]);
     }
   }
 });
