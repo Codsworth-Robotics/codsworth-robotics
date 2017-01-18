@@ -1,51 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
-import { deleteFromCart } from 'APP/app/reducers/cart';
-import {checkout} from 'APP/app/reducers/orders';
+import CartProduct from 'APP/app/components/CartProduct';
+import { deleteFromCart, updateQuantity } from 'APP/app/reducers/cart';
+import { checkout } from 'APP/app/reducers/orders';
 import { priceString } from 'APP/app/utils';
 
 const Cart = props => {
   return (
-    <div className="product-details">
-      <h3>Your Cart</h3>
-      {props.cart.products.map(product => (
-        <div key={product.id} className="row single-product">
-          <div className="col-xs-3">
-            <img src={`${product.images[0]}`} />
+    <div className="cart-container">
+      <h1>Your Cart</h1>
+      <div className="cart">
+        {props.cart.products.map(product => (
+          <CartProduct key={product.id}
+            product={product}
+            updateQuantity={props.updateQuantity}
+            deleteProduct={props.deleteProduct} />
+        ))}
+      </div>
+      <div className="cart order-total center">
+        <h3>Order Total: ${priceString(props.cart.total)}</h3>
+      </div>
+      <h1>Your Information</h1>
+      <div className="cart">
+        <form className="form-group" onSubmit={evt => {
+          evt.preventDefault();
+          props.checkout(
+            evt.target.email.value,
+            evt.target.shippingAddress.value
+          );
+        }}>
+          <div className="input-group checkout-information">
+            <label htmlFor="email">Preferred Email:</label>
+            <input name="email" type="email" className="form-control" placeholder="example@example.com" />
           </div>
-          <div className="col-xs-3">
-            <Link to={`/products/${product.id}`}>
-              <p>{product.name}</p>
-            </Link>
-            {product.inventory > 0 ? <p>In Stock</p> : <p>Out of Stock</p>}
+          <div className="input-group checkout-information">
+            <label htmlFor="address">Shipping Address:</label>
+            <input name="shippingAddress" type="address" className="form-control" placeholder="1234 Example Lane, Candyland, NY 10000" />
           </div>
-          <div className="col-xs-3">
-            <p>Price: ${priceString(product.price)}</p>
-            <p>Quantity: {product.quantity}</p>
-          </div>
-          <div className="col-xs-3">
-            <button
-              onClick={() => props.deleteProduct(product.id)}>
-                Remove from Cart
-            </button>
-          </div>
-        </div>
-      ))}
-      <p>Order Total: ${priceString(props.cart.total)}</p>
-      <form onSubmit={evt => {
-        evt.preventDefault();
-        props.checkout(
-          evt.target.email.value,
-          evt.target.shippingAddress.value
-        );
-      } }>
-        <input name="email" placeholder="Email" />
-        <input name="shippingAddress" placeholder="Shipping Address" />
-        <br/>
-        <input type="submit" value="Checkout" />
-      </form>
+          <button type="submit" className="btn btn-success button-radius">Checkout</button>
+        </form>
+      </div>
     </div>
   );
 };
@@ -60,8 +55,13 @@ const mapDispatchToProps = dispatch => ({
   },
   checkout (email, shippingAddress) {
     dispatch(checkout(email, shippingAddress));
+  },
+  updateQuantity (productId, quantity) {
+    dispatch(updateQuantity(productId, quantity));
   }
 });
+
+// not sure we need the IntermediateCartContainer...
 
 export default connect(
   mapStateToProps,
