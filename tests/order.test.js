@@ -13,6 +13,7 @@ describe('Orders', () => {
   beforeEach(() => {
     currentTime = new Date();
     createdOrder = Orders.build({
+      email: 'user@email.com',
       shippingAddress: '123 South Nowhere Blvd, MiddleOf, DW 12345',
       totalPrice: 12345
     });

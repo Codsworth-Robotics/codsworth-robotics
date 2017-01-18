@@ -14,14 +14,12 @@ export const ProductDetail = (props) => (
     props.selectedProduct.name && (
       <div>
         <div className="row">
-          <div className="col-sm-12 ">
-            <div className="col-sm-3 card">
+            <div className="col-sm-3">
               <ProductDetailText selectedProduct={props.selectedProduct} addToCart={props.addToCart}/>
             </div>
-            <div className="test-border col-sm-9">
+            <div className="col-sm-9">
               <ProductDetailImageViewer selectedProduct={props.selectedProduct} />
             </div>
-          </div>
         </div>
         <div className="row">
           <ProductReviews />
