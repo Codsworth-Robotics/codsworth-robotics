@@ -23,7 +23,25 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.dropdown-menu > li > b {
+.dropdown-menu {
+  background-color: #f8f8f8; }
+
+.dropdown-menu > li .btn .fa-google-plus {
+  float: left;
+  line-height: inherit;
+  padding-right: 10px;
+  border-right: 1px solid;
+  border-color: #d43f3a; }
+
+.dropdown-menu > li a.btn-social {
+  padding-left: 10px;
+  margin: 0px 10px;
+  color: #FFF; }
+
+.dropdown-menu > li a.btn-social:hover {
+  background-color: #d43f3a; }
+
+.dropdown-menu > li b {
   text-align: center; }
 
 .dropdown-menu > .navbar-form {
@@ -40,4 +58,3 @@
 
 i.fa.fa-shopping-cart.active {
   color: #337ab7; }
- #337ab7; }
