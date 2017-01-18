@@ -9,34 +9,31 @@
   box-shadow: 1px 1px 1px grey;
   background-color: #ffffff;
   margin: 5px;
-  padding: 0px 0px; }
+  padding: 1em;
+  text-align: center; }
   .product-card img {
-    width: 100%;
-    padding: 1em; }
-  .product-card .text-container {
-    text-align: center;
-    padding-bottom: 1em; }
-  .product-card .card-header h1 {
+    width: 100%; }
+  .product-card h1 {
     margin-bottom: 0; }
 
 .weak {
   font-weight: lighter; }
 
 .product-detail-container {
-  margin-top: 1em;
+  height: 100%;
+  margin: 5px;
   border-color: white; }
   .product-detail-container .main-image {
-    max-height: 300px;
-    max-width: 300px; }
+    max-height: 600px;
+    max-width: 100%; }
   .product-detail-container .thumbnails > img {
-    max-height: 15px;
-    max-width: 15px; }
-  .product-detail-container .tiny {
-    max-height: 100px;
-    max-width: 100px; }
+    max-height: 100%;
+    max-width: 100%; }
+  .product-detail-container .test {
+    box-shadow: 3px 3px 3px grey; }
   .product-detail-container .card {
     background-color: #ffffff;
-    border-radius: 1px;
+    margin-bottom: 1em;
+    border-radius: 2px;
     padding-bottom: 1em;
-    box-shadow: 3px 3px 3px grey;
-    border-color: white; }
+    box-shadow: 3px 3px 3px grey; }

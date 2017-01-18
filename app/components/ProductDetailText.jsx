@@ -4,8 +4,7 @@ import { priceString } from 'APP/app/utils.js';
 
 export const ProductDetailText = (props) => {
   return (
-      <div>
-        <div>
+      <div className="col-xs-12 card">
           <h1>{props.selectedProduct.name}</h1>
           <p className="weak">{ props.selectedProduct.category.join(' / ') }</p>
           <p>{props.selectedProduct.description}</p>
@@ -18,7 +17,6 @@ export const ProductDetailText = (props) => {
               </button>
             : <button className="btn btn-disabled" disabled="true">Out of Stock</button>
           }
-        </div>
       </div>
   );
 };
