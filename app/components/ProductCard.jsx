@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { addToCart } from 'APP/app/reducers/cart';
 import { priceString } from 'APP/app/utils';
 
 export const ProductCardView = (props) => {
@@ -19,7 +18,7 @@ export const ProductCardView = (props) => {
         {
           (props.product.inventory > 0)
           ? <button className="btn btn-primary"
-              onClick={() => addToCart(props.product.id)}>
+              onClick={() => { props.addToCart(props.product.id); } }>
                 Add to Cart
             </button>
           : <button className="btn btn-disabled" disabled="true">Out of Stock</button>

@@ -28,7 +28,7 @@ export const BrowseProducts = (props) => {
         viewProducts &&
         viewProducts.map(product => {
           return (
-            <ProductCardView key={product.id} product={product} />
+            <ProductCardView key={product.id} product={product} addToCart={props.addToCart}/>
           );
         })
       }
