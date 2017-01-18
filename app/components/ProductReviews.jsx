@@ -9,26 +9,38 @@ export class ProductReviews extends Component {
     this.state = {
       currentViewReviews: true
     };
+
+    this.togglePane = this.togglePane.bind(this);
   }
 
   togglePane (evt) {
     evt.preventDefault();
+    this.setState({currentViewReviews: !this.state.currentViewReviews});
   }
 
   render () {
-    return (
-      <div className="card product-reviews-box col-xs-10">
-        <h2>User Reviews</h2> | <Link to="#" onClick={this.togglePane}>Write a Review</Link>
-        {
-          (this.props.reviews.length > 0) &&
-          (this.props.reviews.map((review, index) => {
-            return (
-              <ReviewOutput review={review} key={index}/>
-            );
-          }))
-        }
-      </div>
-    );
+    if (this.state.currentViewReviews) {
+      return (
+        <div className="card product-reviews-box col-xs-10">
+          <strong>User Reviews</strong> | <Link to="#" onClick={this.togglePane}>Write a Review</Link>
+          {
+            (this.props.reviews.length > 0) &&
+            (this.props.reviews.map((review, index) => {
+              return (
+                <ReviewOutput review={review} key={index}/>
+              );
+            }))
+          }
+        </div>
+      );
+    } else {
+      return (
+        <div className="card product-reviews-box col-xs-10">
+          <h3>Too bad sucka!</h3>
+          <p>lol you thought you was gonna review some shit</p>
+        </div>
+      );
+    }
   }
 }
 

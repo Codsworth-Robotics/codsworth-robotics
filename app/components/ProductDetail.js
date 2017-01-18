@@ -17,7 +17,7 @@ export const ProductDetail = (props) => (
             <div className="col-sm-3">
               <ProductDetailText selectedProduct={props.selectedProduct} addToCart={props.addToCart}/>
             </div>
-            <div className="test-border col-sm-9">
+            <div className="col-sm-9">
               <ProductDetailImageViewer selectedProduct={props.selectedProduct} />
             </div>
         </div>

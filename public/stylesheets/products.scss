@@ -5,6 +5,10 @@
   margin-right: auto;
 }
 
+.products-column {
+  height: 100%;
+}
+
 .product-card {
   border-color: white;
   border-radius: 1px;
@@ -13,6 +17,7 @@
   margin: 5px;
   padding: 1em; 
   text-align: center; 
+  width: 100%;
 
   img {
     width: 100%; }
@@ -31,24 +36,36 @@
   border-color: white;
   .main-image {
     max-height: 600px;
-    max-width:  100%;    }
+    max-width:  100%; 
+    margin-bottom: 1em;
+
+    img {
+      display: block;
+      margin: auto; } }
 
   .thumbnails > img {
     max-height: 100%;
     max-width: 100%;  }
-  .test {
-        box-shadow: 3px 3px 3px grey; 
-  }
 
   .card {
     background-color: #ffffff;
     margin-bottom: 1em;
     border-radius: 2px;
-    padding-bottom: 1em;
+    padding: 1em;
     box-shadow: 3px 3px 3px grey; 
+    padding-top: 1em; 
+    img {
+      max-width:100%;
+      max-height: 100%; }
   }
+
+  .reviews-box {
+    padding: 1em 1em; }
+
 }
 
-.reviews-box {
-  
+
+.card > :hover {
+  box-shadow: 5px 5px 5px grey;
 }
+
