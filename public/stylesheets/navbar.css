@@ -28,16 +28,13 @@
 
 .dropdown-menu > .navbar-form {
   margin-left: 0; }
-
-.dropdown-menu > .navbar-form .btn-default {
-  border: 1px solid transparent;
-  border-top: 0;
-  border-color: #ccc;
-  border-radius: 0 0 4px 4px; }
-
-.dropdown-menu > .navbar-form .form-password {
-  border-bottom-right-radius: 0; }
+  .dropdown-menu > .navbar-form .btn-default {
+    border: 1px solid transparent;
+    border-top: 0;
+    border-color: #ccc;
+    border-radius: 0 0 4px 4px; }
+  .dropdown-menu > .navbar-form .form-password {
+    border-bottom-right-radius: 0; }
 
 i.fa.fa-shopping-cart.active {
   color: #337ab7; }
- #337ab7; }
